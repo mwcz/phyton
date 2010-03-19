@@ -17,6 +17,15 @@ class Photo( models.Model ):
     stripe_color = models.CharField( max_length = 6, blank = True )
     border_color = models.CharField( max_length = 6, blank = True )
 
+    palette0     = models.CharField( max_length = 6, blank = True )
+    palette1     = models.CharField( max_length = 6, blank = True )
+    palette2     = models.CharField( max_length = 6, blank = True )
+    palette3     = models.CharField( max_length = 6, blank = True )
+    palette4     = models.CharField( max_length = 6, blank = True )
+    palette5     = models.CharField( max_length = 6, blank = True )
+    palette6     = models.CharField( max_length = 6, blank = True )
+    palette7     = models.CharField( max_length = 6, blank = True )
+
     prepopulated_fields = { "slug" : ( "title", ) }
 
     def __str__( self ):
