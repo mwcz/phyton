@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from django.models import Photo
+from clayto_2.photos.models import Photo
 
 class PhotoForm( ModelForm ):
 
@@ -11,6 +11,7 @@ class PhotoForm( ModelForm ):
         m = super(PhotoForm, self).save(commit=False)
 
         # do custom stuff
+        print("CUSTOM STUFF")
 
         if commit:
             m.save()
