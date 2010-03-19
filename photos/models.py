@@ -1,6 +1,9 @@
 from django.db import models
+from django.forms import ModelForm
 
 class Photo( models.Model ):
+
+    image        = models.ImageField( upload_to = 'photos' )
     
     title        = models.CharField( max_length = 1024 )
     slug         = models.SlugField()
@@ -11,7 +14,11 @@ class Photo( models.Model ):
     shot_date    = models.DateField( 'date shot' )
     mod_date     = models.DateField( 'date modified', auto_now   = True,  )
 
-    stripe_color = models.CharField( max_length = 6 )
-    border_color = models.CharField( max_length = 6 )
+    stripe_color = models.CharField( max_length = 6, blank = True )
+    border_color = models.CharField( max_length = 6, blank = True )
 
     prepopulated_fields = { "slug" : ( "title", ) }
+
+    def __str__( self ):
+        return self.title
+
