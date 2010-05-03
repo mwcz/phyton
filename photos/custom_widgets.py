@@ -9,16 +9,18 @@ class AdminImageWidget( forms.FileInput ):
     """
 
     def __init__(self, attrs={}):
-        super( AdminFileWidget, self).__init__(attrs)
+        super( AdminImageWidget, self).__init__(attrs)
 
     def render( self, name, value, attrs=None):
+
+        print( "RENDERING CUSTOM IMAGE WIDGET" )
 
         output = []
 
         if value and hasattr(value, "url"):
-            output.append('%s <img src="%s" /> <br />CHANGE!!!!!' % value.url )
+            output.append('%s <img src="%s" /> <br />CHANGE!!!!!' % ( value, value.url ) )
 
-        ouptut.append(super(AdminImageWidget, self).render(name,value,attrs))
+        output.append(super(AdminImageWidget, self).render(name,value,attrs))
 
         return mark_safe(u''.join(output))
 

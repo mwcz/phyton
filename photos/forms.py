@@ -1,8 +1,11 @@
-from django.forms import ModelForm
+from django.forms import ModelForm, ImageField
 from clayto_2.photos.models import Photo
 from clayto_2.photos.cs import palette
+from custom_widgets import AdminImageWidget
 
 class PhotoForm( ModelForm ):
+
+    image    = ImageField( label = 'PHOTO', widget = AdminImageWidget )
 
     class Meta:
         model = Photo
