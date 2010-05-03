@@ -1,11 +1,19 @@
-from django.forms import ModelForm, ImageField
+import django.forms as forms
 from clayto_2.photos.models import Photo
 from clayto_2.photos.cs import palette
-from custom_widgets import AdminImageWidget
+from custom_widgets import AdminImageWidget, AdminSwatchWidget
 
-class PhotoForm( ModelForm ):
+class PhotoForm( forms.ModelForm ):
 
-    image    = ImageField( label = 'PHOTO', widget = AdminImageWidget )
+    image    = forms.ImageField( label = 'PHOTO', widget = AdminImageWidget )
+    palette0 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
+    palette1 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
+    palette2 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
+    palette3 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
+    palette4 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
+    palette5 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
+    palette6 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
+    palette7 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
 
     class Meta:
         model = Photo
