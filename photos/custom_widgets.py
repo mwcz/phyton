@@ -13,12 +13,10 @@ class AdminImageWidget( forms.FileInput ):
 
     def render( self, name, value, attrs=None):
 
-        print( "RENDERING CUSTOM IMAGE WIDGET" )
-
         output = []
 
         if value and hasattr(value, "url"):
-            output.append('%s <img src="%s" /> <br />CHANGE!!!!!' % ( value, value.url ) )
+            output.append('<img src="%s" /> <br />' % value.url )
 
         output.append(super(AdminImageWidget, self).render(name,value,attrs))
 
@@ -35,16 +33,12 @@ class AdminSwatchWidget( forms.TextInput ):
 
     def render( self, name, value, attrs=None):
 
-        print( "RENDERING CUSTOM SWATCH WIDGET" )
-        print( name )
-        print( value )
-        print( attrs )
-
         output = []
 
-        output.append( """<div style="background-color: rgb%s; float: left; width = 30px; height = 30px; display: block;">&nbsp;</div>""" % value )
-        output.append( """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
+        output.append( 
+            """<span style="clear: both; padding: 0; margin: 3px; background-color: rgb%s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % value )
+        output.append( 
+            """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
 
         return mark_safe(u''.join(output))
-
 

@@ -5,15 +5,21 @@ from custom_widgets import AdminImageWidget, AdminSwatchWidget
 
 class PhotoForm( forms.ModelForm ):
 
-    image    = forms.ImageField( label = 'PHOTO', widget = AdminImageWidget )
-    palette0 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
-    palette1 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
-    palette2 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
-    palette3 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
-    palette4 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
-    palette5 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
-    palette6 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
-    palette7 = forms.CharField(  label  = '',     widget = AdminSwatchWidget )
+    image         = forms.ImageField( label = 'PHOTO', widget = AdminImageWidget )
+    stroke_color  = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    border_color  = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    title_color   = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    nav_color     = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    caption_color = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    post_color    = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    palette0      = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    palette1      = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    palette2      = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    palette3      = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    palette4      = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    palette5      = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    palette6      = forms.CharField(  label = '',      widget = AdminSwatchWidget )
+    palette7      = forms.CharField(  label = '',      widget = AdminSwatchWidget )
 
     class Meta:
         model = Photo
