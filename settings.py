@@ -89,3 +89,5 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'clayto_2.photos',
 )
+
+IMAGE_SIZE_BOUNDS = ( 800, 800 )
