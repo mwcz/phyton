@@ -15,8 +15,12 @@ class AdminImageWidget( forms.FileInput ):
 
         output = []
 
+        print(self)
+        print(value)
+        print(attrs)
+
         if value and hasattr(value, "url"):
-            output.append('<img src="%s" /> <br />' % value.url )
+            output.append('<img width="" style="position: absolute; top: 0; left: 0;" src="%s" /> <br />' % value.url )
 
         output.append(super(AdminImageWidget, self).render(name,value,attrs))
 

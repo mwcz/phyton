@@ -7,10 +7,7 @@ from custom_widgets import AdminImageWidget
 class PhotoAdmin( admin.ModelAdmin ):
 
     form                 = PhotoForm
-    #add_form_template    = 'admin/photos/add_form.html'
-    #change_form_template = 'admin/photos/change_form.html'
     date_hierarchy       = 'post_date'
-    exclude              = ('slug',)
-    #formfield_overrides  = { models.ImageField : { 'widget' : AdminImageWidget }, }
+    prepopulated_fields  = { 'slug' : ( 'title',) }
 
 admin.site.register( Photo, PhotoAdmin )

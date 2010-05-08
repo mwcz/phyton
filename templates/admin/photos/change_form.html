@@ -41,6 +41,8 @@
     {{ adminform.form.non_field_errors }}
 {% endif %}
 
+<!-- relative positioned container so internal elements can be positioned absolutely -->
+<div style="position: relative; margin: 0; padding: 0;">
 
 {% for fieldset in adminform %}
     <fieldset class="module aligned {{ fieldset.classes }}">
@@ -53,30 +55,17 @@
                 {{ line.errors }}
                 {% for field in line %}
 
-                    {% if not "palette" in field.field.name  %}
+                    {% if not "palette" in field.field.name and False %}
                     <div{% if not line.fields|length_is:"1" %} class="field-box"{% endif %} >
                     {% endif %}
 
-                        {% if field.field.name == "image" %}
-                            {{ field.field }}
-                        {% else %}{% if "palette" in field.field.name  %}
-                            {{ field.field }}
-                        {% else %}{% if field.is_checkbox %}
-                            {{ field.field }}{{ field.label_tag }}
-                        {% else %}
-                            {{ field.label_tag }}
-                            {% if field.is_readonly %}
-                                <p>{{ field.contents }}</p>
-                            {% else %}
-                                {{ field.field }}
-                            {% endif %}
-                        {% endif %}{% endif %}{% endif %}
+                        {{ field.field }}
 
                         {% if field.field.field.help_text %}
                             <p class="help">{{ field.field.field.help_text|safe }}</p>
                         {% endif %}
 
-                    {% if not "palette" in field.field.name  %}
+                    {% if not "palette" in field.field.name and False %}
                     </div>
                     {% endif %}
                 {% endfor %}
@@ -85,7 +74,7 @@
     </fieldset>
 {% endfor %}
 
-
+</div>
 
 
 
