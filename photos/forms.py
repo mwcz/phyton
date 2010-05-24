@@ -2,12 +2,17 @@ import django.forms as forms
 from clayto_2.photos.models import Photo
 from clayto_2.photos.cs import palette
 from clayto_2.settings import IMAGE_SIZE_BOUNDS, MEDIA_ROOT
-from custom_widgets import AdminImageWidget, AdminSwatchWidget
+from custom_widgets import *
 from PIL import Image
 
 class PhotoForm( forms.ModelForm ):
 
     image         = forms.ImageField( label = 'PHOTO', widget = AdminImageWidget )
+    title         = forms.CharField(  label = 'TITLE', widget = AdminTitleWidget )
+    slug          = forms.CharField(  label = 'SLUG',  widget = AdminSlugWidget )
+    text          = forms.CharField(  label = 'TEXT',  widget = AdminTextWidget )
+    caption       = forms.CharField(  label = 'CAPT',  widget = AdminCaptionWidget )
+    #shot_date     = forms.CharField(  label = 'SHOT',  widget = AdminShotDateWidget )
     stroke_color  = forms.CharField(  label = '',      widget = AdminSwatchWidget )
     border_color  = forms.CharField(  label = '',      widget = AdminSwatchWidget )
     title_color   = forms.CharField(  label = '',      widget = AdminSwatchWidget )
@@ -41,10 +46,9 @@ class PhotoForm( forms.ModelForm ):
         #img_path = "%sphotos/%s/%s" % ( MEDIA_ROOT, m.slug, m.image )
         #img = img.resize( IMAGE_SIZE_BOUNDS )
         #print( img.size )
+        #img.save( img_path )
 
         if commit:
             m.save()
-
-        img.save( img_path )
 
         return m
