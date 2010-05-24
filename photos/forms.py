@@ -31,17 +31,20 @@ class PhotoForm( forms.ModelForm ):
         m = super(PhotoForm, self).save(commit=False)
 
         # get the image's palette
-        p = palette( m.image, 8 )
+        img = Image.open( m.image )
+        p = palette( img, 8 )
+        print(m.image)
         m.palette0, m.palette1, m.palette2, m.palette3, m.palette4, m.palette5, m.palette6, m.palette7 = p
 
         # resize the image
-        img_path = "%sphotos/%s/%s" % ( MEDIA_ROOT, m.slug, m.image )
-        print( img_path )
-        img = Image.open( img_path )
-        img = img.resize( IMAGE_SIZE_BOUNDS )
-        img.save( img_path )
+        # image resizing on hold until I can figure out 
+        #img_path = "%sphotos/%s/%s" % ( MEDIA_ROOT, m.slug, m.image )
+        #img = img.resize( IMAGE_SIZE_BOUNDS )
+        #print( img.size )
 
         if commit:
             m.save()
+
+        img.save( img_path )
 
         return m

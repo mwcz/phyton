@@ -4,9 +4,9 @@ from PIL import Image, ImageChops
 
 def palette( _image, _size ):
 
-    IMAGE_FILE    = _image     # path to image file
+    #IMAGE_FILE    = _image     # path to image file
     NODES         = _size      # how many swatches the palette will have
-    IMAGE         = Image.open( IMAGE_FILE ).convert("RGB")
+    IMAGE         = _image.convert("RGB")
     IMAGE_REDUCED = IMAGE.convert( "P", palette = Image.ADAPTIVE, colors = NODES ).convert("RGB")
 
     colors = {}
