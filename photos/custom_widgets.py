@@ -16,7 +16,46 @@ class AdminImageWidget( forms.FileInput ):
         output = []
 
         if value and hasattr(value, "url"):
-            output.append('<img style="width: 400px; position: absolute; top: 40px; left: 90px;" src="%s" /> <br />' % value.url )
+            output.append("""
+                    <!--<img style="width: 400px;" src="%s" /> <br />-->
+    <div id="preview">
+
+      <div id="image">
+        <canvas id="stroke_tl"> The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.org.</canvas>
+        <canvas id="stroke_tr"> The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.</canvas>
+        <canvas id="photograph">The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.</canvas>
+      </div> <!-- /#image -->
+
+      <div id="textuals">
+
+          <div id="nav">
+            <a href="#" class="nav" title="Previous" id="prev">-</a>
+            <a href="#" class="nav" title="Gallery"  id="all" >*</a>
+            <a href="#" class="nav" title="Next"     id="next">+</a>
+          </div> <!-- /#nav -->
+
+          <h2 id="title">Hands</h2>
+
+          <div id="post">
+
+            <blockquote id="caption">what no one could figure out.</blockquote>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor ligula eu 
+                magna dictum mollis. Quisque ac interdum libero. Phasellus laoreet est quis dolor 
+                imperdiet nec porta augue auctor. Nulla semper viverra odio id mattis. Phasellus et 
+                tortor nec justo egestas vulputate. Pellentesque habitant morbi tristique senectus 
+                et netus et malesuada fames ac turpis egestas. Sed massa mi, viverra ac condimentum 
+                nec, pulvinar vitae felis. Vestibulum eget enim id elit cursus interdum.
+            </p>
+
+          </div> <!-- /#post -->
+
+        </div> <!-- /#textuals -->
+
+    </div> <!-- /#preview -->
+
+                """ % value.url )
 
         output.append(super(AdminImageWidget, self).render(name,value,attrs))
 

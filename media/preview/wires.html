@@ -1,0 +1,262 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+        <title>clayto.org 2009 redesign brainstorm</title>
+                <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="description" content="" />
+        <meta name="keywords" content="" />
+
+        <link rel="alternate" type="application/rss+xml" title="clayto rss feed" href="http://clayto.org/rss" />
+
+        <link rel="stylesheet" type="text/css" href="css/print.css"   media="print" />
+        <link rel="stylesheet" type="text/css" href="css/home.css"    media="all"   />
+
+        <style type="text/css">
+            @import url(image/wires/wires.css);
+        </style>
+
+        <script type="text/javascript" src="js/jquery/jquery-1.3.1.min.js"></script> 
+        <script type="text/javascript" src="js/colorspace/colorspace.js"></script> 
+        <script type="text/javascript" src="js/jsimage/JSImage.js"></script> 
+
+        <script type="text/javascript">
+
+
+            // make canvi public so I can play with it in firebug more easily
+            var stroke_tl; 
+            var stroke_tr;
+
+
+            $(document).ready( function() { 
+
+                // Initialize the two JSImage objects, one for each brush stroke
+                stroke_tl  = new JSImage( "stroke_tl",  "image/wires/wires_tl.png" );
+                stroke_tr  = new JSImage( "stroke_tr",  "image/wires/wires_tr.png" );
+                photograph = new JSImage( "photograph", "image/wires/wires.png" );
+
+                $("#selected label:selected").each( function() {
+                    $( this ).css("background-color","#222");
+                    console.log("A");
+                });
+
+                /******************************************************************
+                 * The two tools (eyedropper and area eyedropper) have icons that *
+                 * change when they are selected.                                 *
+                 ******************************************************************/
+
+                $("#eyedropper_label").mousedown( function() {
+                    $("#eyedropper_label img").attr("src","eyedropper_selected.png");
+                    $("#areadropper_label img").attr("src","areadropper.png");
+                });
+
+                $("#areadropper_label").mousedown( function() {
+                    $("#eyedropper_label img").attr("src","eyedropper.png");
+                    $("#areadropper_label img").attr("src","areadropper_selected.png");
+                });
+
+                $("#selected label").mousedown( function() {
+                    $("#selected label").css("background-color","#000");
+                    $( this ).css("background-color","#222");
+                });
+
+            });
+
+
+            function set_primary( r, g, b ) {
+
+                switch( $("#selected input:checked").val() ) {
+
+                    case "strokes":
+
+                        stroke_tl.load_image( "image/wires/wires_tl.png" ); 
+                        stroke_tr.load_image( "image/wires/wires_tr.png" ); 
+
+                        stroke_tl.multiply( null, r, g , b );
+                        stroke_tr.multiply( null, r, g , b );
+
+                        break;
+
+                    case "border":
+
+                        document.getElementById("photograph").style.borderColor="rgb(" + r + "," + g + "," + b + ")";
+                        break;
+
+                    case "title":
+
+                        document.getElementById("title").style.color="rgb(" + r + "," + g + "," + b + ")";
+                        break;
+
+                    case "nav":
+
+                        $("#nav a").css( "color", "rgb(" + r + "," + g + "," + b + ")" );
+                        break;
+
+                    case "post":
+
+                        document.getElementById("post").style.color="rgb(" + r + "," + g + "," + b + ")";
+                        break;
+
+                    case "caption":
+
+                        document.getElementById("caption").style.color="rgb(" + r + "," + g + "," + b + ")";
+                        break;
+
+                    default:
+
+                        break;
+
+                }
+
+            }
+
+            pixel = function(e) {
+
+                var cnvs = photograph.canvas;
+                var x = e.pageX - cnvs.offsetLeft;
+                var y = e.pageY - cnvs.offsetTop;
+                var imgdata = cnvs.getImageData( x, y, 1, 1 );
+                var new_color = [ imgdata.data[0], imgdata.data[1], imgdata.data[2] ];
+
+                set_primary( new_color[0], new_color[1], new_color[2] );
+
+            }
+
+            function activate_eyedropper() {
+
+                $("#photograph").mousedown( function(e) {
+                    $(this).mousemove( pixel ); // fire pixel() while user is dragging
+                    $(this).click( pixel );     // only so it will still fire if user doesn't drag at all
+                });
+
+                $("#photograph").mouseup( function() {
+                    photograph.canvas.onmousemove = null;
+                });
+
+            }
+
+            function activate_areadropper() {
+
+
+            }
+
+        </script>
+
+</head>
+
+<body class="">
+
+
+
+
+<div id="cincture">
+
+    <div id="preview">
+
+      <div id="image">
+        <canvas id="stroke_tl"> The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.org.</canvas>
+        <canvas id="stroke_tr"> The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.</canvas>
+        <canvas id="photograph">The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.</canvas>
+      </div> <!-- /#image -->
+
+      <div id="textuals">
+
+          <div id="nav">
+            <a href="#" class="nav" title="Previous" id="prev">-</a>
+            <a href="#" class="nav" title="Gallery"  id="all" >*</a>
+            <a href="#" class="nav" title="Next"     id="next">+</a>
+          </div> <!-- /#nav -->
+
+          <h2 id="title">Hands</h2>
+
+          <div id="post">
+
+            <blockquote id="caption">what no one could figure out.</blockquote>
+
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor ligula eu 
+                magna dictum mollis. Quisque ac interdum libero. Phasellus laoreet est quis dolor 
+                imperdiet nec porta augue auctor. Nulla semper viverra odio id mattis. Phasellus et 
+                tortor nec justo egestas vulputate. Pellentesque habitant morbi tristique senectus 
+                et netus et malesuada fames ac turpis egestas. Sed massa mi, viverra ac condimentum 
+                nec, pulvinar vitae felis. Vestibulum eget enim id elit cursus interdum.
+            </p>
+
+          </div> <!-- /#post -->
+
+        </div> <!-- /#textuals -->
+
+    </div> <!-- /#preview -->
+
+    <div id="selected">
+
+        <label for="active_strokes">
+            STROKES
+        </label>
+
+        <label for="active_border">
+            BORDER
+        </label>
+
+        <label for="active_title">
+            TITLE
+        </label>
+
+        <label for="active_nav">
+            NAV
+        </label>
+
+        <label for="active_caption">
+            CAPTION
+        </label>
+
+        <label for="active_post">
+            POST
+        </label>
+
+        <input type="radio" name="active_element" id="active_strokes" value="strokes" />
+        <input type="radio" name="active_element" id="active_border"  value="border"  />
+        <input type="radio" name="active_element" id="active_title"   value="title"   />
+        <input type="radio" name="active_element" id="active_nav"     value="nav"     />
+        <input type="radio" name="active_element" id="active_caption" value="caption" />
+        <input type="radio" name="active_element" id="active_post"    value="post"    />
+
+    </div> <!-- /#selected -->
+
+    <div id="palette">
+
+        <span onclick="set_primary( 32,57,2 )"     style="background-color: rgb(32,  57,  2);">&nbsp;</span>
+        <span onclick="set_primary( 79,102,28 )"   style="background-color: rgb(79,  102, 28);">&nbsp;</span>
+        <span onclick="set_primary( 105,145,12 )"  style="background-color: rgb(105, 145, 12);">&nbsp;</span>
+        <span onclick="set_primary( 118,149,36 )"  style="background-color: rgb(118, 149, 36);">&nbsp;</span>
+        <span onclick="set_primary( 138,170,0 )"   style="background-color: rgb(138, 170, 0);">&nbsp;</span>
+        <span onclick="set_primary( 140,173,59 )"  style="background-color: rgb(140, 173, 59);">&nbsp;</span>
+        <span onclick="set_primary( 179,192,109 )" style="background-color: rgb(179, 192, 109);">&nbsp;</span>
+        <span onclick="set_primary( 199,208,162 )" style="background-color: rgb(199, 208, 162);">&nbsp;</span>
+
+    </div> <!-- /#palette -->
+
+    <div id="cabinet">
+
+        <label for="eyedropper" id="eyedropper_label" onclick="activate_eyedropper()">
+            <img src="eyedropper.png" />
+        </label>
+
+        <label for="areadropper" id="areadropper_label">
+            <img src="areadropper.png" />
+        </label>
+
+        <input type="radio" name="tool" value="eyedropper"  id="eyedropper" />
+        <input type="radio" name="tool" value="areadropper" id="areadropper" />
+
+    </div> <!-- /#cabinet -->
+
+</div> <!-- /#cincture -->
+
+
+
+
+</body>
+</html>

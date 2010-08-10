@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>clayto.org 2009 redesign brainstorm</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="alternate" type="application/rss+xml" title="clayto rss feed" href="http://clayto.org/rss" />
+	<link rel="stylesheet" type="text/css" href="css/print.css" media="print" /> 
+
+	<link rel="stylesheet" type="text/css" href="css/home.css" media="all" />
+
+	<style type="text/css">
+		@import url(image/rain/rain.css);
+	</style>
+
+	<script type="text/javascript" src="js/colorspace/colorspace.js"></script> 
+	<script type="text/javascript" src="js/jsimage/JSImage.js"></script> 
+
+	<script type="text/javascript">
+		
+	    window.onload = function() { 
+		stroke_tl = new JSImage( "stroke_tl", "image/rain/rain_tl.png" ); 
+		stroke_tr = new JSImage( "stroke_tr", "image/rain/rain_tr.png" ); 
+	    }
+
+	    // make canvi public so I can play with it in firebug more easily
+	    var stroke_tl; 
+	    var stroke_tr;
+
+
+	    function set_primary( r, g, b ) {
+		stroke_tl.multiply( null, r, g , b );
+		stroke_tr.multiply( null, r, g , b );
+		document.getElementsByTagName("img")[0].style.borderColor="rgb(" + r + "," + g + "," + b + ")";
+	    }
+
+	</script>
+
+</head>
+
+<body class="">
+
+<div id="cincture">
+
+
+
+  <div id="image">
+    <canvas id="stroke_tl">help</canvas>
+    <canvas id="stroke_tr">help</canvas>
+    <img src="image/rain/rain.png" />
+  </div>
+
+  <div id="textuals">
+
+    <div id="nav">
+      <a href="#" class="nav" title="Previous" id="prev">-</a>
+      <a href="#" class="nav" title="Gallery"  id="all" >*</a>
+      <a href="#" class="nav" title="Next"     id="next">+</a>
+    </div>
+
+    <div id="title">
+      <h2>Rain</h2>
+    </div>
+
+    <div id="post">
+<span 
+    onclick="set_primary( 5 , 0 , 0 );"
+    style="display: block; float: left; width: 25px; height: 25px; background-color: rgb(5  , 0 , 0);">&nbsp;</span>
+<span 
+    onclick="set_primary( 15, 0 , 0 );"
+    style="display: block; float: left; width: 25px; height: 25px; background-color: rgb(15 , 0 , 0);">&nbsp;</span>
+<span 
+    onclick="set_primary( 20, 2 , 2 );"
+    style="display: block; float: left; width: 25px; height: 25px; background-color: rgb(20 , 2 , 2);">&nbsp;</span>
+<span 
+    onclick="set_primary( 30, 2 , 2 );"
+    style="display: block; float: left; width: 25px; height: 25px; background-color: rgb(30 , 2 , 2);">&nbsp;</span>
+<span 
+    onclick="set_primary( 33, 3 , 3 );"
+    style="display: block; float: left; width: 25px; height: 25px; background-color: rgb(33 , 3 , 3);">&nbsp;</span>
+<span 
+    onclick="set_primary( 37, 4 , 3 );"
+    style="display: block; float: left; width: 25px; height: 25px; background-color: rgb(37 , 4 , 3);">&nbsp;</span>
+<span 
+    onclick="set_primary( 60, 13, 6 );"
+    style="display: block; float: left; width: 25px; height: 25px; background-color: rgb(60 , 13, 6);">&nbsp;</span>
+<span 
+    onclick="set_primary( 90, 33, 16 );"
+    style="display: block; float: left; width: 25px; height: 25px; background-color: rgb(90, 33, 16);">&nbsp;</span>
+      <blockquote id="quotation">what no one could figure out.</blockquote>
+
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor ligula eu magna dictum mollis. Quisque ac interdum libero. Phasellus laoreet est quis dolor imperdiet nec porta augue auctor. Nulla semper viverra odio id mattis. Phasellus et tortor nec justo egestas vulputate. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Sed massa mi, viverra ac condimentum nec, pulvinar vitae felis. Vestibulum eget enim id elit cursus interdum. Fusce turpis nulla, egestas eu tempor vel, iaculis ac turpis. Curabitur sed semper erat. Nullam aliquet venenatis urna sed dapibus. Vestibulum porttitor odio vitae sem luctus interdum. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aliquam malesuada sodales tristique. </p>
+      <p>In hac habitasse platea dictumst. Sed volutpat rutrum rutrum. Curabitur iaculis ligula id sapien posuere eget pellentesque erat iaculis. Proin dignissim commodo vestibulum. Donec euismod tristique magna, vel vulputate nunc vulputate in. Nullam eu massa enim. Donec pellentesque congue hendrerit. Mauris sed ipsum quis nulla bibendum consequat vel id arcu. Sed porttitor consequat lectus, nec adipiscing eros ullamcorper in. Phasellus at nisi velit, in vehicula sapien. Aliquam est lectus, viverra vel congue quis, pellentesque vel nibh.</p>
+    </div>
+
+    <div id="logo">
+      <a href="#">
+        <img src="logo.png" />
+      </a>
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>

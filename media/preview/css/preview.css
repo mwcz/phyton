@@ -1,0 +1,103 @@
+body { 
+  color: #fff;
+  background-color: #000; 
+}
+
+div#cincture {
+  margin: 0 auto;
+}
+
+div#image {
+  margin-top: 90px;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+div#image #stroke_tl {
+  position: absolute;
+  top: -19px;
+  left: -36px;
+  z-index: 0;
+}
+
+div#image #stroke_tr {
+  position: absolute;
+  top: -19px;
+  right: -31px;
+  z-index: 0;
+}
+
+div#image img {
+  position: relative;
+  z-index: 1;
+}
+
+div#textuals {
+  position: relative;
+}
+
+div#title h2 {
+  font-family: Georgia, serif;
+  font-size: 2em;
+  letter-spacing: 0.2em;
+  padding: 0.4em 0.8em;
+  margin: 0;
+}
+
+div#nav {
+  text-align: center;
+  float: right;
+  font-family: Verdana;
+  color: #000;
+  padding: 0.5em 1.0em;
+}
+
+blockquote#quotation {
+  text-align: center;
+  font-style: italic;
+  margin: 0em 0 2.2em;
+}
+div#post {
+  padding: 1em 0;
+  font: 0.8em Verdana, Arial, sans-serif;
+}
+div#post p {
+  line-height: 1.4em;
+}
+
+/********************
+ * Image navigation *
+ ********************/
+
+a.nav {
+  font-size: 0.6em;
+  margin: 0 0.2em;
+  color: #fff;
+  text-decoration: none;
+}
+a#prev {
+  font-size: 0.3em;
+  position: relative;
+  top: -0.1em;
+}
+a#all {
+  position: relative;
+  top: -0.1em;
+}
+a#next {
+  position: relative;
+  top: -0.4em;
+}
+
+
+div#logo {
+  clear: both;
+  width: 300px;
+  height: 175px;
+  margin: 0 auto 2em;
+}
+div#logo img {
+  border: 0;
+}
+
