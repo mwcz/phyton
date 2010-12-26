@@ -1,0 +1,49 @@
+\documentclass[12pt]{article}
+
+\newcommand{\piRsquare}{\pi r^2}        % This is my own macro !!!
+
+\title{My Sample \LaTeX{} Document}         % used by \maketitle
+\author{\L\"{a}rs  Schl{\oe}ff\d{o}ng\"{e}n, }      % used by \maketitle
+\date{July 14, 2005}                    % used by \maketitle
+
+\begin{document}
+\maketitle                      % automatic title!
+
+I typed this file with a plain text editor.
+(I used \textbf{pico} and \textbf{emacs}.)
+End
+    of
+        paragraph.
+
+This is my second paragraph.
+The area of a circle is $\pi r^2$; again, that is $\piRsquare$.
+My score on the last exam\footnote{May 23} was $95 \pm 5$.
+
+\section{Formulae; inline vs. displayed}
+
+I insert an inline formula by surrounding it with a pair of
+single \$ symbols;  what is $x = 3 \times 5$?
+For a \emph{displayed} formula, use double-\$
+before and after --- include no blank lines!
+$$\mu^{\alpha+3} + (\alpha^{\beta}+\theta_{\gamma}+\delta+\zeta)$$
+
+\subsection{Numbered formulae}
+
+Use the \emph{equation} environment to get numbered formulae, e.g.,
+\begin{equation}
+    y_{i+1} = x_{i}^{2n} - \sqrt{5}x_{i-1}^{n} + \sqrt{x_{i-2}^7} -1
+\end{equation}
+
+\begin{equation}
+    \frac{\partial u}{\partial t} + \nabla^{4}u + \nabla^{2}u +
+        \frac12    |\nabla u|^{2}~ =~ c^2
+\end{equation}
+
+\section{Acknowledgments}
+
+Thanks to my buddies {\AE}schyulus and Chlo\"{e},
+who helped me define the macro \verb9\piRsquare9
+which is $\piRsquare$.
+The end.
+
+\end{document}             % End of document.
