@@ -1,5 +1,5 @@
-spec: spec/specification.tex spec/specification.pdf
-	pdfspec spec/specification.tex
+spec/specification.pdf: spec/specification.tex
+	pdflatex spec/specification.tex
 	mv specification.* spec
 
 clean:
