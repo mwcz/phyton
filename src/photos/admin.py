@@ -1,5 +1,5 @@
-from clayto_2.photos.models import Photo
-from clayto_2.photos.forms  import PhotoForm
+from src.photos.models import Photo
+from src.photos.forms  import PhotoForm
 from django.db import models
 from django.contrib import admin
 from custom_widgets import AdminImageWidget

@@ -71,7 +71,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
 )
 
-ROOT_URLCONF = 'clayto_2.urls'
+ROOT_URLCONF = 'src.urls'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -87,7 +87,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.admin',
-    'clayto_2.photos',
+    'photos',
 )
 
 IMAGE_SIZE_BOUNDS = ( 800, 800 )

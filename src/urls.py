@@ -4,8 +4,6 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Example:
-    # (r'^clayto_2/', include('clayto_2.foo.urls')),
 
     # serve static media
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',

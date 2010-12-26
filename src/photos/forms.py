@@ -1,7 +1,7 @@
 import django.forms as forms
-from clayto_2.photos.models import Photo
-from clayto_2.photos.cs import palette
-from clayto_2.settings import IMAGE_SIZE_BOUNDS, MEDIA_ROOT
+from src.photos.models import Photo
+from src.photos.cs import palette
+from src.settings import IMAGE_SIZE_BOUNDS, MEDIA_ROOT
 from custom_widgets import *
 from PIL import Image
 
