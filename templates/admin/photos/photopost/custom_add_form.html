@@ -3,8 +3,10 @@
 
 {% block extrahead %}{{ block.super }}
 {% url admin:jsi18n as jsi18nurl %}
+<!-- ADD FORM -->
 <script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
 {{ media }}
+
 
 <!-- clayto.org javascripts and stylesheets -->
         <link rel="stylesheet" type="text/css" href="/site_media/preview/css/home.css"   media="all" />
@@ -171,7 +173,13 @@
   </ul>
 {% endif %}{% endif %}
 {% endblock %}
-<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}{% block form_top %}{% endblock %}
+<form {% if has_file_field %}enctype="multipart/form-data" {% endif %}action="{{ form_url }}" method="post" id="{{ opts.module_name }}_form">{% csrf_token %}
+
+{% block form_top %}
+    <p>{% trans "First, choose an image file. Then, you'll be able to create a color palette." %}</p>
+    <input type="hidden" name="_continue" value="1" />
+{% endblock %}
+
 <div>
 {% if is_popup %}<input type="hidden" name="_popup" value="1" />{% endif %}
 {% if save_on_top %}{% submit_row %}{% endif %}
@@ -182,44 +190,50 @@
     {{ adminform.form.non_field_errors }}
 {% endif %}
 
-<!-- relative positioned container so internal elements can be positioned absolutely -->
-<div id="cincture">
-
+<!---
 {% for fieldset in adminform %}
-    <fieldset class="module aligned {{ fieldset.classes }}">
-        {% if fieldset.name %}<h2>{{ fieldset.name }}</h2>{% endif %}
-        {% if fieldset.description %}
-            <div class="description">{{ fieldset.description|safe }}</div>
-        {% endif %}
-            <div class="form-row{% if line.errors %} errors{% endif %} {% for field in line %}{{ field.field.name }} {% endfor %} ">
-        {% for line in fieldset %}
-                {{ line.errors }}
-                {% for field in line %}
-
-                    {% if not "palette" in field.field.name and False %}
-                    <div{% if not line.fields|length_is:"1" %} class="field-box"{% endif %} >
-                    {% endif %}
-
-                        {{ field.field }}
-
-                        {% if field.field.field.help_text %}
-                            <p class="help">{{ field.field.field.help_text|safe }}</p>
-                        {% endif %}
-
-                    {% if not "palette" in field.field.name and False %}
-                    </div>
-                    {% endif %}
-                {% endfor %}
-        {% endfor %}
-            </div>
-    </fieldset>
+  {% include "admin/includes/fieldset.html" %}
 {% endfor %}
+--->
 
-</div>
+<fieldset class="module aligned">
 
+    <div class="form-row image  ">
+        <div>
+            <label for="id_image" class="required">Image:</label>
+            <input type="file" name="image" id="id_image" />
+        </div>
+    </div>
 
+    <div class="form-row title  ">
+        <div>
+            <label for="id_title" class="required">Title:</label>
+            <input id="id_title" type="text" class="vTextField" name="title" maxlength="1024" />
+        </div>
+    </div>
 
+    <div class="form-row caption  ">
+        <div>
+            <label for="id_caption" class="required">Caption:</label>
+            <input id="id_caption" type="text" class="vTextField" name="caption" maxlength="1024" />
+        </div>
+    </div>
 
+    <div class="form-row text  ">
+        <div>
+            <label for="id_text" class="required">Text:</label>
+            <textarea id="id_text" rows="10" cols="40" name="text" class="vLargeTextField"></textarea>
+        </div>
+    </div>
+
+    <div class="form-row shot_date  ">
+        <div>
+            <label for="id_shot_date" class="required">Date shot:</label>
+            <input id="id_shot_date" type="text" class="vDateField" name="shot_date" size="10" />
+        </div>
+    </div>
+
+</fieldset>
 
 {% block after_field_sets %}{% endblock %}
 
@@ -241,3 +255,4 @@
 </div>
 </form></div>
 {% endblock %}
+
