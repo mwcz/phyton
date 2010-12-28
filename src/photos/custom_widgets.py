@@ -62,11 +62,14 @@ class AdminGeneratedSwatchWidget( forms.TextInput ):
         output = []
 
         output.append( 
-            """<span onclick="
-                    $(selected_swatch).css( 'backgroundColor', $(this).css('backgroundColor') );
-                    $('#id_' + selected_swatch_name ).attr( 'value', $(this).css('backgroundColor') );
-                    " 
-                    style="clear: both; padding: 0; margin: 3px; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( value ) )
+            """<span 
+                    tabindex="1"
+                    class="swatch generated_swatch"
+                    onclick="
+                                $(selected_swatch).css( 'backgroundColor', $(this).css('backgroundColor') );
+                                $('#id_' + selected_swatch_name ).attr( 'value', $(this).css('backgroundColor') );
+                            " 
+                    style="clear: both; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( value ) )
         output.append( 
             """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
 
@@ -105,7 +108,10 @@ class AdminEditableSwatchWidget( forms.TextInput ):
             )
 
         output.append( 
-            """<span onclick=" selected_swatch = $(this); selected_swatch_name='%s';" style="clear: both; padding: 0; margin: 3px; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( name, value ) )
+            """<span 
+                    tabindex="1"
+                    class="swatch editable_swatch"
+                    onclick=" selected_swatch = $(this); selected_swatch_name='%s';" style="clear: both; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( name, value ) )
         output.append( 
             """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
 
