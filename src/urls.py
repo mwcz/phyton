@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': '/home/zip/workspace/clayto/branches/clayto_2/media', 'show_indexes': True}),
 
+    (r'^photo/(?P<photo_slug>.*)$', 'photos.views.photo' ),
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
     # to INSTALLED_APPS to enable admin documentation:
