@@ -2,6 +2,7 @@ from django import forms
 from django.utils.safestring import mark_safe
 from django.contrib.admin.widgets import AdminFileWidget, AdminDateWidget
 
+
 class AdminImageWidget( forms.FileInput ):
 
     """
@@ -17,69 +18,99 @@ class AdminImageWidget( forms.FileInput ):
 
         if value and hasattr(value, "url"):
             output.append("""
-                    <!--<img style="width: 400px;" src="%s" /> <br />-->
-    <div id="preview">
 
-      <div id="image">
-        <canvas id="stroke_tl"> The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.org.</canvas>
-        <canvas id="stroke_tr"> The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.</canvas>
-        <canvas id="photograph">The CANVAS element in HTML5 is not supported by your browser, but is required by clayto.</canvas>
-      </div> <!-- /#image -->
+                <!-- my JS library for colorspace conversions -->
+                <script type="text/javascript" src="/site_media/preview/js/colorspace/colorspace.js"></script> 
+                <!-- my JS library for loading images into canvas elements (it also provides some basic image
+                     editing capabilities but they will not be utilized -->
+                <script type="text/javascript" src="/site_media/preview/js/jsimage/JSImage.js"></script> 
 
-      <div id="textuals">
+                <script type="text/javascript">
+                    $(document).ready( function() { 
+                        // Load the image into the canvas
+                        photograph = new JSImage( "photograph", "%s" );
+                    });
+                </script>
 
-          <div id="nav">
-            <a href="#" class="nav" title="Previous" id="prev">-</a>
-            <a href="#" class="nav" title="Gallery"  id="all" >*</a>
-            <a href="#" class="nav" title="Next"     id="next">+</a>
-          </div> <!-- /#nav -->
+                <div id="image">
+                    <canvas id="photograph">
+                        The CANVAS element in HTML5 is not supported by your browser, 
+                        but is required by clayto.
+                    </canvas>
+                </div> <!-- /#image -->
 
-          <h2 id="title">Hands</h2>
 
-          <div id="post">
-
-            <blockquote id="caption">what no one could figure out.</blockquote>
-
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus tempor ligula eu 
-                magna dictum mollis. Quisque ac interdum libero. Phasellus laoreet est quis dolor 
-                imperdiet nec porta augue auctor. Nulla semper viverra odio id mattis. Phasellus et 
-                tortor nec justo egestas vulputate. Pellentesque habitant morbi tristique senectus 
-                et netus et malesuada fames ac turpis egestas. Sed massa mi, viverra ac condimentum 
-                nec, pulvinar vitae felis. Vestibulum eget enim id elit cursus interdum.
-            </p>
-
-          </div> <!-- /#post -->
-
-        </div> <!-- /#textuals -->
-
-    </div> <!-- /#preview -->
-
-                """ % value.url )
+            """ % value.url )
 
         output.append(super(AdminImageWidget, self).render(name,value,attrs))
 
         return mark_safe(u''.join(output))
 
-class AdminSwatchWidget( forms.TextInput ):
+
+class AdminGeneratedSwatchWidget( forms.TextInput ):
 
     """
-    An ImageField widget that shows a square colored swatch.
+    An ImageField widget that shows a square colored swatch.  These swatches
+    are part of a palette generated automatically based on an uploaded image.
     """
 
     def __init__(self, attrs={}):
-        super( AdminSwatchWidget, self).__init__(attrs)
+        super( AdminGeneratedSwatchWidget, self).__init__(attrs)
 
     def render( self, name, value, attrs=None):
 
         output = []
 
         output.append( 
-            """<span style="clear: both; padding: 0; margin: 3px; background-color: rgb%s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % value )
+            """<span onclick="
+                    $(selected_swatch).css( 'backgroundColor', $(this).css('backgroundColor') );
+                    $('#id_' + selected_swatch_name ).attr( 'value', $(this).css('backgroundColor') );
+                    " 
+                    style="clear: both; padding: 0; margin: 3px; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( value ) )
         output.append( 
             """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
 
         return mark_safe(u''.join(output))
+
+
+class AdminEditableSwatchWidget( forms.TextInput ):
+
+    """
+    An ImageField widget that shows a square colored swatch.  These swatches
+    are editable from the admin interface.  The user clicks on the editable
+    swatch to indicate that they want to change that swatch.  Then they may
+    click on one of the generated swatches, which will replace the color of
+    the editable swatch with that of the generated swatch they clicked on.
+    """
+
+    def __init__(self, attrs={}):
+        super( AdminEditableSwatchWidget, self).__init__(attrs)
+
+    def render( self, name, value, attrs=None):
+
+        output = []
+
+        print( (name,value) )
+
+        # 'stroke_color' is the first editable swatch that will be displayed.
+        # set it as the default selected swatch
+        if name == 'stroke_color':
+            output.append(
+                """
+                    <script type="text/javascript">
+                        var selected_swatch = $('stroke_color');
+                        var selected_swatch_name = 'stroke_color';
+                    </script>
+                """
+            )
+
+        output.append( 
+            """<span onclick=" selected_swatch = $(this); selected_swatch_name='%s';" style="clear: both; padding: 0; margin: 3px; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( name, value ) )
+        output.append( 
+            """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
+
+        return mark_safe(u''.join(output))
+
 
 class AdminTitleWidget( forms.TextInput ):
 
@@ -100,6 +131,7 @@ class AdminTitleWidget( forms.TextInput ):
 
         return mark_safe(u''.join(output))
 
+
 class AdminSlugWidget( forms.TextInput ):
 
     """
@@ -117,6 +149,7 @@ class AdminSlugWidget( forms.TextInput ):
             """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
 
         return mark_safe(u''.join(output))
+
 
 class AdminTextWidget( forms.TextInput ):
 
@@ -136,6 +169,7 @@ class AdminTextWidget( forms.TextInput ):
 
         return mark_safe(u''.join(output))
 
+
 class AdminShotDateWidget( forms.TextInput ):
 
     """
@@ -154,6 +188,7 @@ class AdminShotDateWidget( forms.TextInput ):
 
         return mark_safe(u''.join(output))
         
+
 class AdminCaptionWidget( forms.TextInput ):
 
     """
