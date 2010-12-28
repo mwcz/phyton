@@ -69,6 +69,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
 ROOT_URLCONF = 'src.urls'
@@ -88,6 +89,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin',
     'photos',
+    'debug_toolbar',
 )
 
 IMAGE_SIZE_BOUNDS = ( 800, 800 )
+
+INTERNAL_IPS = ('127.0.0.1',)
