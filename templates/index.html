@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<title>CLAYTO.ORG</title>
+</head>
+
+<body>
+
+<ul>
+{% for p in all_photos %}
+    <li> <a href="/photo/{{ p.slug }}">{{ p }}</a> </li>
+{% endfor %}
+</ul>
+
+</body>
+
+</html>
