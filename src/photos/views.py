@@ -1,6 +1,13 @@
 from django.shortcuts import render_to_response
 from photos.models import Photo
 
+def index( request ):
+    all_photos = Photo.objects.all()
+    params = {
+                'all_photos' : all_photos,
+             }
+    return render_to_response( 'index.html', params )
+
 def photo( request, photo_slug ):
     print(photo_slug)
     the_photo = Photo.objects.get( slug = photo_slug )
