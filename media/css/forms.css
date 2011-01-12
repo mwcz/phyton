@@ -1,0 +1,82 @@
+/**
+ *
+ * Customizes the display of the color swatches when adding/editing photos.
+ *
+ **/
+
+
+
+.swatch
+{
+    paddding: 0;
+    margin: 0;
+}
+
+
+/* Hide the labels of each color swatch */
+div.stroke_color div label,
+div.border_color div label,
+div.title_color div label,
+div.nav_color div label,
+div.caption_color div label,
+div.post_color div label,
+div.palette0 div label,
+div.palette1 div label,
+div.palette2 div label,
+div.palette3 div label,
+div.palette4 div label,
+div.palette5 div label,
+div.palette6 div label,
+div.palette7 div label
+{ 
+    display: none;
+}
+
+div.stroke_color div,
+div.border_color div,
+div.title_color div,
+div.nav_color div,
+div.caption_color div,
+div.post_color div,
+div.palette0 div,
+div.palette1 div,
+div.palette2 div,
+div.palette3 div,
+div.palette4 div,
+div.palette5 div,
+div.palette6 div,
+div.palette7 div
+{
+    margin: 0;
+    padding: 0;
+}
+
+/* Make each color swatch's container div display inline */
+div.stroke_color,
+div.border_color,
+div.title_color,
+div.nav_color,
+div.caption_color,
+div.post_color,
+div.palette0,
+div.palette1,
+div.palette2,
+div.palette3,
+div.palette4,
+div.palette5,
+div.palette6,
+div.palette7
+{ 
+    display: inline;
+    float: left;
+    margin: 1px;
+    padding: 0;
+}
+
+div.palette0,
+div.shot_date
+{
+    clear: left;
+}
+
+div.slug { display: none; }
