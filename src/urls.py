@@ -1,13 +1,14 @@
 from django.conf.urls.defaults import *
-
 from django.contrib import admin
+from settings import MEDIA_ROOT
+
 admin.autodiscover()
 
 urlpatterns = patterns('',
 
     # serve static media
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
-            {'document_root': '/home/zip/workspace/clayto/branches/clayto_2/media', 'show_indexes': True}),
+            {'document_root': MEDIA_ROOT, 'show_indexes': True}),
 
 
     # Uncomment the admin/doc line below and add 'django.contrib.admindocs' 
