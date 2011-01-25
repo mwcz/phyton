@@ -27,21 +27,10 @@ class PhotoAddForm( forms.ModelForm ):
         m.palette6 = "rgb%s" % str( p[6] )
         m.palette7 = "rgb%s" % str( p[7] )
 
-        print(m.palette0)
-        print(m.palette1)
-        print(m.palette2)
-        print(m.palette3)
-        print(m.palette4)
-        print(m.palette5)
-        print(m.palette6)
-        print(m.palette7)
-
         # resize the image
-        # image resizing on hold until I can figure out 
-        #img_path = "%sphotos/%s/%s" % ( MEDIA_ROOT, m.slug, m.image )
-        #img = img.resize( IMAGE_SIZE_BOUNDS )
-        #print( img.size )
-        #img.save( img_path )
+        img_path = "%s%s" % ( MEDIA_ROOT, m.image )
+        img.thumbnail( IMAGE_SIZE_BOUNDS )
+        img.save( img_path )
 
         if commit:
             m.save()
@@ -117,21 +106,10 @@ class PhotoChangeForm( forms.ModelForm ):
         m.palette6 = "rgb%s" % str( p[6] )
         m.palette7 = "rgb%s" % str( p[7] )
 
-        print(m.palette0)
-        print(m.palette1)
-        print(m.palette2)
-        print(m.palette3)
-        print(m.palette4)
-        print(m.palette5)
-        print(m.palette6)
-        print(m.palette7)
-
         # resize the image
-        # image resizing on hold until I can figure out 
-        #img_path = "%sphotos/%s/%s" % ( MEDIA_ROOT, m.slug, m.image )
-        #img = img.resize( IMAGE_SIZE_BOUNDS )
-        #print( img.size )
-        #img.save( img_path )
+        img_path = "%s%s" % ( MEDIA_ROOT, m.image )
+        img.thumbnail( IMAGE_SIZE_BOUNDS )
+        img.save( img_path )
 
         if commit:
             m.save()
