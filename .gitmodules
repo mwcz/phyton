@@ -1,0 +1,3 @@
+[submodule "media/preview/js/jsimage"]
+	path = media/preview/js/jsimage
+	url = git@github.com:mwclayto/jsimage.git
