@@ -1,5 +1,7 @@
 # Django settings for clayto_2 project.
 
+import os
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -39,9 +41,13 @@ SITE_ID = 1
 # to load the internationalization machinery.
 USE_I18N = False
 
+# The absolute path to the project's directory (the parent directory of src/)
+ROOT_PATH = os.path.abspath( os.path.join( os.path.dirname( __file__ ), os.path.pardir ) )
+
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = '/home/zip/workspace/clayto/branches/clayto_2/media/'
+#MEDIA_ROOT = os.path.join( ROOT_PATH, 'media/' ) # is this cross-platform?
+MEDIA_ROOT = "/home/zip/workspace/claytoorg/media/" # is this cross-platform?
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
@@ -52,9 +58,6 @@ MEDIA_URL = 'http://localhost:8000/site_media/'
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
 ADMIN_MEDIA_PREFIX = '/media/'
-
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'a0a(2*1u2g9_+o2mp+yc7vl802mf0ighx4orllp_5u#m*b#_oe'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -78,7 +81,7 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/zip/workspace/clayto/branches/clayto_2/templates',
+    os.path.join( ROOT_PATH, 'templates/' ), # is this cross-platform?
 )
 
 INSTALLED_APPS = (
@@ -95,4 +98,9 @@ INSTALLED_APPS = (
 
 IMAGE_SIZE_BOUNDS = ( 800, 800 )
 
-INTERNAL_IPS = ('127.0.0.1',)
+
+# Try to import the local settings that must be customized for each installation
+try:
+    import settings_local
+except:
+    pass
