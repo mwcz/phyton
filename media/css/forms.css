@@ -79,4 +79,6 @@ div.shot_date
     clear: left;
 }
 
-div.slug { display: none; }
+#photo, #photo:active {
+    cursor: url(../cursors/10.cur), crosshair;
+}
