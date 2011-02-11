@@ -2,7 +2,6 @@ from django import forms
 from django.utils.safestring import mark_safe
 from django.contrib.admin.widgets import AdminFileWidget, AdminDateWidget
 
-
 class AdminImageWidget( forms.FileInput ):
 
     """
@@ -19,28 +18,14 @@ class AdminImageWidget( forms.FileInput ):
         if value and hasattr(value, "url"):
             output.append("""
 
-                <!-- my JS library for colorspace conversions -->
-                <script type="text/javascript" src="/site_media/preview/js/colorspace/colorspace.js"></script> 
                 <!-- my JS library for loading images into canvas elements (it also provides some basic image
                      editing capabilities but they will not be utilized -->
-                <script type="text/javascript" src="/site_media/preview/js/jsimage/JSImage.js"></script> 
+                <script type="text/javascript" src="/site_media/js/phyton.js"></script> 
 
-                <script type="text/javascript">
-                    $(document).ready( function() { 
-                        // Load the image into the canvas
-                        photograph = new JSImage( "photograph", "%s" );
-                    });
-                </script>
-
-                <div id="image">
-                    <canvas id="photograph">
-                        The CANVAS element in HTML5 is not supported by your browser, 
-                        but is required by clayto.
-                    </canvas>
-                </div> <!-- /#image -->
+                <img src="%s" class="phyton_image" />
 
 
-            """ % value.url )
+            """ % ( value.url ) )
 
         output.append(super(AdminImageWidget, self).render(name,value,attrs))
 
@@ -66,8 +51,8 @@ class AdminGeneratedSwatchWidget( forms.TextInput ):
                     tabindex="1"
                     class="swatch generated_swatch"
                     onclick="
-                                $(selected_swatch).css( 'backgroundColor', $(this).css('backgroundColor') );
-                                $('#id_' + selected_swatch_name ).attr( 'value', $(this).css('backgroundColor') );
+                                django.jQuery(selected_swatch).css( 'backgroundColor', django.jQuery(this).css('backgroundColor') );
+                                django.jQuery('#id_' + selected_swatch_name ).attr( 'value', django.jQuery(this).css('backgroundColor') );
                             " 
                     style="clear: both; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( value ) )
         output.append( 
@@ -101,7 +86,7 @@ class AdminEditableSwatchWidget( forms.TextInput ):
             output.append(
                 """
                     <script type="text/javascript">
-                        var selected_swatch = $('stroke_color');
+                        var selected_swatch = django.jQuery('stroke_color');
                         var selected_swatch_name = 'stroke_color';
                     </script>
                 """
@@ -111,7 +96,7 @@ class AdminEditableSwatchWidget( forms.TextInput ):
             """<span 
                     tabindex="1"
                     class="swatch editable_swatch"
-                    onclick=" selected_swatch = $(this); selected_swatch_name='%s';" style="clear: both; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( name, value ) )
+                    onclick=" selected_swatch = django.jQuery(this); selected_swatch_name='%s';" style="clear: both; background-color: %s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( name, value ) )
         output.append( 
             """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
 
