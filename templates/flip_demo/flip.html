@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <title>CLAYTO.ORG</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready( function() {
+
+    function rotate( _t ) {
+
+        // t from 0..90
+        if( _t > 88 ) return;
+        $('img').css( '-webkit-transform', 'skew( 0deg, ' + _t + 'deg)' );
+        $('img').css( 'width', 200 - _t * 2.223 );
+        setTimeout( rotate, 5, _t + 1 );
+
+        // _t from 0..2
+        //if( _t > 2 ) return;
+        //$('img').css( '-webkit-transform', 'skew( 0deg, ' + 22.5*Math.pow(_t,2) + 'deg)' );
+        //$('img').css( '-moz-transform', 'skew( 0deg, ' + 22.5*Math.pow(_t,2) + 'deg)' );
+        //setTimeout( rotate, 30, _t + 0.1 );
+
+    }
+
+
+    $('img').click( function() {
+    rotate( 0 );
+    });
+
+    //$('img').css( '-webkit-transform', 'skew(0deg, -30deg)');
+
+});
+
+</script>
+
+<style type="text/css">
+body{ background-color: #000; }
+img {
+    -webkit-transform: skew( -0deg, 0deg );
+    border: 1px solid red;
+    margin: 0 auto;
+    display: block;
+}
+</style>
+
+</head>
+
+<body>
+
+<h1>Flip Test</h1>
+
+<img src="flip.jpg" width="200" height="100" />
+
+</body>
+
+</html>
