@@ -13,20 +13,13 @@ class Photo( models.Model ):
     image         = models.ImageField( upload_to = __path__ )
 
     title         = models.CharField( max_length = 1024 )
-    slug          = models.SlugField()
+    slug          = models.SlugField( unique = True )
     caption       = models.CharField( max_length = 1024 )
-    text          = models.TextField()
+    text          = models.TextField( blank = True )
 
     mod_date      = models.DateField( 'date modified', auto_now = True,  )
     post_date     = models.DateField( 'date posted', auto_now_add = True,  )
     shot_date     = models.DateField( 'date photo was taken' )
-
-    stroke_color  = models.CharField( max_length = 32, blank = True )
-    border_color  = models.CharField( max_length = 32, blank = True )
-    title_color   = models.CharField( max_length = 32, blank = True )
-    nav_color     = models.CharField( max_length = 32, blank = True )
-    caption_color = models.CharField( max_length = 32, blank = True )
-    post_color    = models.CharField( max_length = 32, blank = True )
 
     # An eight-color palette for the image
     palette0 = models.CharField( max_length = 32, blank = True )
@@ -38,4 +31,12 @@ class Photo( models.Model ):
     palette6 = models.CharField( max_length = 32, blank = True )
     palette7 = models.CharField( max_length = 32, blank = True )
 
-
+    # An eight-color suggested palette generated automatically from the image
+    suggest0 = models.CharField( max_length = 32, blank = True )
+    suggest1 = models.CharField( max_length = 32, blank = True )
+    suggest2 = models.CharField( max_length = 32, blank = True )
+    suggest3 = models.CharField( max_length = 32, blank = True )
+    suggest4 = models.CharField( max_length = 32, blank = True )
+    suggest5 = models.CharField( max_length = 32, blank = True )
+    suggest6 = models.CharField( max_length = 32, blank = True )
+    suggest7 = models.CharField( max_length = 32, blank = True )
