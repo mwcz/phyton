@@ -11,25 +11,54 @@
 
 $(document).ready( function() {
 
-    function rotate( _t ) {
+    var obj = 'img';
+
+    function rotate( _start, _end, _t ) {
+
 
         // t from 0..90
-        if( _t > 88 ) return;
-        $('img').css( '-webkit-transform', 'skew( 0deg, ' + _t + 'deg)' );
-        $('img').css( 'width', 200 - _t * 2.223 );
-        setTimeout( rotate, 5, _t + 1 );
+        if( _t >= 180 ) {
+            // Reset skew and width to defaults
+            $(obj).css( '-webkit-transform', 'skew( 0deg, 0deg)' );
+            $(obj).css(    '-moz-transform', 'skew( 0deg, 0deg)' );
+            $(obj).css(      '-o-transform', 'skew( 0deg, 0deg)' );
+            $(obj).css(         'transform', 'skew( 0deg, 0deg)' );
+            $(obj).css(             'width', 400 );
+            console.log("[FLIP] complete");
+            return;
+        }
 
-        // _t from 0..2
-        //if( _t > 2 ) return;
-        //$('img').css( '-webkit-transform', 'skew( 0deg, ' + 22.5*Math.pow(_t,2) + 'deg)' );
-        //$('img').css( '-moz-transform', 'skew( 0deg, ' + 22.5*Math.pow(_t,2) + 'deg)' );
-        //setTimeout( rotate, 30, _t + 0.1 );
+        if ( _t >= 0 && _t < 90 ) {
+            $( _end + ' p' ).hide();
+            $( obj ).hide();
+            obj = _start;
+            $( obj ).show();
+        }
+        else if ( _t > 90 && _t < 180 ) {
+            $( obj ).hide();
+            obj = _end;
+            $( obj ).show();
+            $( obj + ' p' ).fadeIn(1000);
+        }
+
+        $(obj).css( '-webkit-transform', 'skew( 0deg, ' + _t + 'deg)' );
+        $(obj).css(    '-moz-transform', 'skew( 0deg, ' + _t + 'deg)' );
+        $(obj).css(      '-o-transform', 'skew( 0deg, ' + _t + 'deg)' );
+        $(obj).css(         'transform', 'skew( 0deg, ' + _t + 'deg)' );
+        $(obj).css(             'width', Math.abs( 400 - _t * 4.446) );
+
+        setTimeout( rotate, 1, _start, _end,  _t + 2 );
 
     }
 
 
+    $( 'div' ).click( function() {
+        rotate( 'div', 'img', 0 );
+    });
+
     $('img').click( function() {
-    rotate( 0 );
+        console.log("[FLIP] started");
+        rotate( 'img', 'div', 0 );
     });
 
     //$('img').css( '-webkit-transform', 'skew(0deg, -30deg)');
@@ -40,11 +69,22 @@ $(document).ready( function() {
 
 <style type="text/css">
 body{ background-color: #000; }
-img {
-    -webkit-transform: skew( -0deg, 0deg );
+div,img {
+    width: 400px;
+    height: 300px;
     border: 1px solid red;
     margin: 0 auto;
+}
+img {
+    -webkit-transform: skew( -0deg, 0deg );
     display: block;
+}
+p { 
+    color: red;
+    display: none;
+}
+div {
+    display: none;
 }
 </style>
 
@@ -54,7 +94,17 @@ img {
 
 <h1>Flip Test</h1>
 
-<img src="flip.jpg" width="200" height="100" />
+<img src="flip.jpg" />
+
+<div>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id orci eget libero egestas aliquam nec in nibh. Morbi condimentum magna quis massa viverra porta. Curabitur sollicitudin ullamcorper turpis, eget venenatis nisi euismod a. Vestibulum sit amet lacus vel nisl aliquet euismod. Mauris luctus viverra orci sed tincidunt. Integer faucibus faucibus consequat. Mauris et enim vitae turpis adipiscing porta. Proin fringilla, turpis a scelerisque interdum, nisl ligula fringilla erat, ac malesuada ipsum leo nec dolor. In semper vestibulum tortor ut feugiat. Vivamus feugiat, ante vel malesuada molestie, orci est congue elit, nec faucibus orci urna vel sem. Sed feugiat, arcu eu scelerisque vestibulum, metus leo pretium sem, non luctus orci nulla nec dolor. Ut et imperdiet justo. Proin non pulvinar mauris. Mauris lectus erat, dignissim vitae interdum sit amet, rutrum vitae tellus. Ut dictum mi metus, in scelerisque justo. Nullam hendrerit eros at nunc rhoncus placerat. Suspendisse potenti. Sed neque eros, viverra id varius non, interdum at velit.
+
+Sed id neque laoreet felis sodales aliquam. Quisque volutpat venenatis mollis. Maecenas fringilla, mi ac hendrerit aliquet, dolor massa venenatis dui, sit amet lobortis eros risus vitae sapien. Mauris facilisis euismod consectetur. Cras vestibulum ultricies justo sit amet dapibus. Sed vel diam nec sem auctor suscipit. Pellentesque suscipit lacinia scelerisque. Phasellus tempor, odio vel lobortis tincidunt, dui sapien ornare massa, et volutpat urna elit ac elit. Proin in ultrices mi. Vestibulum suscipit semper ligula, a tincidunt magna vestibulum sed. Fusce rutrum lorem non risus lobortis vestibulum.
+
+Donec sed velit mauris. Duis sodales risus ac nisi lobortis semper. Nam neque odio, pulvinar id cursus eu, feugiat quis neque. Donec vehicula tellus in ligula blandit mollis euismod turpis ultricies. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Morbi pretium bibendum turpis in mattis. Praesent sed quam in urna aliquam imperdiet hendrerit at dolor. Nunc scelerisque velit sit amet mi eleifend sollicitudin egestas libero iaculis. Curabitur convallis mi vel augue tincidunt consequat. Ut vulputate adipiscing rhoncus. Morbi odio erat, bibendum pulvinar commodo scelerisque, tempor a turpis. Ut dapibus ullamcorper eros, sed aliquam tortor hendrerit sed. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sit amet turpis non lectus sodales porta. Sed vulputate imperdiet turpis vel laoreet. Aenean enim lorem, viverra quis scelerisque eget, aliquet quis ligula. Aliquam eleifend cursus felis, vel mollis arcu faucibus quis. Donec ultrices, sem sed hendrerit pharetra, augue dui accumsan ante, et pretium orci neque sit amet eros. Integer vitae nunc urna, a imperdiet elit. Aliquam ipsum nulla, rhoncus quis malesuada vitae, dictum nec neque.
+</p>
+</div>
 
 </body>
 
