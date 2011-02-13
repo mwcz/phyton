@@ -2,27 +2,32 @@ from django.shortcuts import render_to_response
 from photos.models import Photo
 
 def index( request ):
-    all_photos = Photo.objects.all()
+    new_photo = Photo.objects.all()[0]
     params = {
-                'all_photos' : all_photos,
+                'new_photo'  : new_photo,
+                'bg_color'   : new_photo.palette0,
+                'text_color' : new_photo.palette1,
+                'photo_title': new_photo.title,
              }
     return render_to_response( 'index.html', params )
 
 def photo( request, photo_slug ):
-    print(photo_slug)
     the_photo = Photo.objects.get( slug = photo_slug )
     params = {
                 'photo_file' : the_photo.image.url,
-                'bg_color'   : the_photo.stroke_color,
+                'bg_color'   : the_photo.palette0,
+                'text_color' : the_photo.palette1,
                 'photo_name' : the_photo.title,
-                'palette0'   : the_photo.stroke_color,
-                'palette1'   : the_photo.border_color,
-                'palette2'   : the_photo.title_color,
-                'palette3'   : the_photo.nav_color,
-                'palette4'   : the_photo.caption_color,
-                'palette5'   : the_photo.post_color,
+                'palette0'   : the_photo.palette0,
+                'palette1'   : the_photo.palette1,
+                'palette2'   : the_photo.palette2,
+                'palette3'   : the_photo.palette3,
+                'palette4'   : the_photo.palette4,
+                'palette5'   : the_photo.palette5,
+                'palette6'   : the_photo.palette6,
+                'palette7'   : the_photo.palette7,
              }
-    return render_to_response( 'photos/photo.html', params )
+    return render_to_response( 'photo.html', params )
 
 
 
