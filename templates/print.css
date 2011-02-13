@@ -1,0 +1,40 @@
+
+/* File: print.css */
+
+body { 
+    font-family: TerminusMedium; 
+}
+
+h1 { 
+    font-family: AmigaForever;
+    font-size: 4em;
+    font-weight: normal;
+}
+/*
+h1 .z {
+    letter-spacing: -25px;
+}
+h1 .i {
+    letter-spacing: -25px;
+}
+h1 .p {
+    letter-spacing: -16px;
+}
+*/
+h1 .z {
+    letter-spacing: -0.51em;
+}
+h1 .i {
+    letter-spacing: -0.4em;
+}
+h1 .p {
+    letter-spacing: -0.25em;
+}
+
+@font-face { font-family: "AmigaForever"; src: url("/site_media/fonts/amiga4ever.ttf"); }
+@font-face { font-family: "TerminusBold"; src: url("/site_media/fonts/TerminusBold.ttf"); }
+@font-face { font-family: "TerminusMedium"; src: url("/site_media/fonts/TerminusMedium.ttf"); }
+@font-face { font-family: "TerminusMediumItalic"; src: url("/site_media/fonts/TerminusMediumItalic.ttf"); }
+
+/* EOF: print.css */
+
