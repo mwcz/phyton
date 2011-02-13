@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.safestring import mark_safe
-from django.contrib.admin.widgets import AdminFileWidget, AdminDateWidget
+from django.contrib.admin.widgets import AdminFileWidget, AdminDateWidget, AdminTextareaWidget
 
 class AdminImageWidget( forms.FileInput ):
 
@@ -99,3 +99,21 @@ class AdminEditableSwatchWidget( forms.TextInput ):
 
         return mark_safe(u''.join(output))
 
+
+class AdminCKEditorWidget( AdminTextareaWidget ):
+
+    """
+    A textarea upgraded to a rich text area using CKEditor.
+    """
+
+    def render( self, name, value, attrs=None):
+
+        output = []
+
+        output.append( 
+        """
+            <script type="text/javascript" src="/site_media/3rd/ckeditor/ckeditor.js"></script>
+            <textarea name="%s" id="id_%s" class="ckeditor">%s</textarea>
+        """ % ( name, name, value ) )
+
+        return mark_safe(u''.join(output))
