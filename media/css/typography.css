@@ -1,0 +1,6 @@
+body{ font-family: AmigaForever; }
+@font-face {
+    font-family: "AmigaForever";
+    src: url("/site_media/fonts/amiga4ever.ttf");
+}
+
