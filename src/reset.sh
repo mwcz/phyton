@@ -1,10 +1,17 @@
-#!/bin/sh
+#!/bin/bash
 
 echo Resetting database for app 'Photos'
 
 python manage.py sqlclear photos | python manage.py dbshell
 python manage.py syncdb
 
-echo Deleting uploaded photos
+read -p "Delete all non-hidden files/dirs in the media/photos/ directory (rm -rfv ../media/photos/*)?  (yes/n)" proceed
 
-rm -rfi ../media/photos/*
+if [ $proceed == yes ];
+then
+    rm -rfv ../media/photos/*
+else
+    echo "media/photos/ preserved"
+fi
+
+echo "Reset complete."
