@@ -16,14 +16,14 @@ class PhotoAddForm( forms.ModelForm ):
         p = palette( img, 8 )
 
         # save each color in "rgb(R,G,B)" format
-        m.suggest0 = m.palette0 = "rgb%s" % str( p[0] )
-        m.suggest1 = m.palette1 = "rgb%s" % str( p[1] )
-        m.suggest2 = m.palette2 = "rgb%s" % str( p[2] )
-        m.suggest3 = m.palette3 = "rgb%s" % str( p[3] )
-        m.suggest4 = m.palette4 = "rgb%s" % str( p[4] )
-        m.suggest5 = m.palette5 = "rgb%s" % str( p[5] )
-        m.suggest6 = m.palette6 = "rgb%s" % str( p[6] )
-        m.suggest7 = m.palette7 = "rgb%s" % str( p[7] )
+        m.suggest0 = m.palette0 = p[0]
+        m.suggest1 = m.palette1 = p[1]
+        m.suggest2 = m.palette2 = p[2]
+        m.suggest3 = m.palette3 = p[3]
+        m.suggest4 = m.palette4 = p[4]
+        m.suggest5 = m.palette5 = p[5]
+        m.suggest6 = m.palette6 = p[6]
+        m.suggest7 = m.palette7 = p[7]
 
         # resize the image
         img_path = "%s%s" % ( MEDIA_ROOT, m.image )
@@ -73,14 +73,14 @@ class PhotoChangeForm( PhotoAddForm ):
         p = palette( img, 8 )
 
         # save each color in "rgb(R,G,B)" format
-        m.suggest0 = "rgb%s" % str( p[0] )
-        m.suggest1 = "rgb%s" % str( p[1] )
-        m.suggest2 = "rgb%s" % str( p[2] )
-        m.suggest3 = "rgb%s" % str( p[3] )
-        m.suggest4 = "rgb%s" % str( p[4] )
-        m.suggest5 = "rgb%s" % str( p[5] )
-        m.suggest6 = "rgb%s" % str( p[6] )
-        m.suggest7 = "rgb%s" % str( p[7] )
+        m.suggest0 = p[0]
+        m.suggest1 = p[1]
+        m.suggest2 = p[2]
+        m.suggest3 = p[3]
+        m.suggest4 = p[4]
+        m.suggest5 = p[5]
+        m.suggest6 = p[6]
+        m.suggest7 = p[7]
 
         # resize the image
         img_path = "%s%s" % ( MEDIA_ROOT, m.image )
@@ -100,8 +100,6 @@ class PhotoChangeForm( PhotoAddForm ):
             "title",
             "slug",
             "shot_date",
-            "text",
-            "image",
             "palette0",
             "palette1",
             "palette2",
@@ -118,6 +116,8 @@ class PhotoChangeForm( PhotoAddForm ):
             "suggest5",
             "suggest6",
             "suggest7",
+            "image",
+            "text",
             )
 
 
