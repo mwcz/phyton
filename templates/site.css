@@ -2,8 +2,43 @@
 /* File: site.css */
 
 body { 
-    background-color: {{ bg_color }};
-    color: {{ text_color }};
+    background-color: #{{ bg_color }};
+    color: #{{ text_color }};
+}
+
+h1 {
+    text-align: center;
+    margin: 0.2em 0;
+    color: #{{ title_color }};
+}
+
+img.photo {
+    background-color: #000;
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #{{ border_color }};      
+    -webkit-box-shadow: 0px -4px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.1),
+                        0px 20px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.2);
+       -moz-box-shadow: 0px -4px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.1),
+                        0px 20px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.2);
+         -o-box-shadow: 0px -4px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.1),
+                        0px 20px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.2);
+            box-shadow: 0px -4px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.1),
+                        0px 20px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.2);
+}
+
+.controls {
+    text-align: center;
+    padding: 0.6em;
+}
+.controls > span {
+    margin: 0 0.5em;
+}
+.controls .back {
+}
+.controls .all {
+}
+.controls .next {
 }
 
 /* EOF: site.css */
