@@ -7,11 +7,8 @@ class PhotoAdmin( admin.ModelAdmin ):
 
     add_form            = PhotoAddForm
     form                = PhotoChangeForm
-    date_hierarchy      = 'post_date'
+    #date_hierarchy      = 'post_date'
     prepopulated_fields = { 'slug' : ( 'title',) }
-
-    #add_form_template    = "admin/photos/photopost/add_form.html"
-    #change_form_template = "admin/photos/photopost/change_form.html"
 
     # copied from the UserAdmin in django/contrib/auth/admin.py
     def get_form( self, request, obj=None, **kwargs ):
