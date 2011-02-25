@@ -2,7 +2,7 @@
 /* File: print.css */
 
 body { 
-    font-family: TerminusMedium; 
+    font-family: TerminusMedium, Consolas, FreeSansMono, sans-serif; 
 }
 
 h1 { 
@@ -10,17 +10,6 @@ h1 {
     font-size: 4em;
     font-weight: normal;
 }
-/*
-h1 .z {
-    letter-spacing: -25px;
-}
-h1 .i {
-    letter-spacing: -25px;
-}
-h1 .p {
-    letter-spacing: -16px;
-}
-*/
 h1 .z {
     letter-spacing: -0.51em;
 }
@@ -29,6 +18,54 @@ h1 .i {
 }
 h1 .p {
     letter-spacing: -0.25em;
+}
+h1 a { 
+    text-decoration: none;
+    color: #{{ title_color }};
+}
+/*
+h1 .c {
+    letter-spacing: -0.57em;
+}
+h1 .l {
+    letter-spacing: -0.38em;
+}
+h1 .a {
+    letter-spacing: -0.19em;
+}
+h1 .y {
+    letter-spacing: -0.25em;
+}
+h1 .t {
+    letter-spacing: -0.38em;
+}
+*/
+
+a {
+    -webkit-transition: text-shadow 0.18s ease;
+       -moz-transition: text-shadow 0.18s ease;
+         -o-transition: text-shadow 0.18s ease;
+            transition: text-shadow 0.18s ease;
+}
+a:hover {
+    text-shadow: 0px -3px 14px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.3 );
+}
+
+.controls {
+    font-family: AmigaForever;
+}
+.controls a {
+    text-decoration: none;
+    color: #{{ text_color }};
+}
+.controls .back {
+    font-size: 4em;
+}
+.controls .all {
+    font-size: 4em;
+}
+.controls .next {
+    font-size: 4em;
 }
 
 @font-face { font-family: "AmigaForever"; src: url("/site_media/fonts/amiga4ever.ttf"); }
