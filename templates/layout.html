@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>CLAYTO.ORG</title>
+
+<!-- Syntax highlighting code -->
+<script type="text/javascript" src="/site_media/3rd/sh/scripts/shCore.js"></script>
+<script type="text/javascript" src="/site_media/3rd/sh/scripts/shBrushPython.js"></script>
+<link rel="stylesheet" href="/site_media/3rd/sh/styles/shCore.css" />
+<link rel="stylesheet" href="/site_media/3rd/sh/styles/shThemeRDark.css" />
+<script type="text/javascript"> SyntaxHighlighter.all(); </script>
+
+<!-- 960gs grid system -->
+<link rel="stylesheet" href="/site_media/css/960.css" />
+
+<style type="text/css">
+{% include "reset.css" %}
+{% include "print.css" %}
+{% include "site.css" %}
+</style>
+
+</head>
+
+<body>
+
+<div class="container_12">
+
+    <h1> 
+        <span class="z">z</span><span class="i">i</span><span class="p">p</span><span class="t">t</span>
+        <!--
+        <a href="/">
+        <span class="c">c</span><span class="l">l</span><span class="a">a</span><span class="y">y</span><span class="t">t</span><span class="o">o</span>
+        </a>
+        -->
+    </h1>
+
+    {% block content %}
+    {% endblock %}
+
+</div> <!-- /.container_12 -->
+
+</body>
+
+</html>
