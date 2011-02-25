@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
     # photos app urls
-    (r'^photo/(?P<photo_slug>.*)$', 'photos.views.photo' ),
+    (r'^photos/$', 'photos.views.photos' ),
+    (r'^photo/(?P<photo_number>.*)$', 'photos.views.photo' ),
     (r'^$', 'photos.views.index' ),
 )
