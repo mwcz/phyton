@@ -27,7 +27,9 @@ div.suggest3 div label,
 div.suggest4 div label,
 div.suggest5 div label,
 div.suggest6 div label,
-div.suggest7 div label
+div.suggest7 div label,
+div.image div label,
+div.text div label
 { 
     display: none;
 }
@@ -52,9 +54,12 @@ div.suggest7
     display: inline;
     float: left;
     margin: 1px;
-    padding: 0;
 }
 
 #photo, #photo:active {
     cursor: url(../cursors/10.cur), crosshair;
+}
+
+div.image {
+    clear: both;
 }
