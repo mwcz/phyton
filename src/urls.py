@@ -6,6 +6,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
+    # ckeditor 
+    (r'^ckeditor/', include('ckeditor.urls')),
+
     # serve static media
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': MEDIA_ROOT, 'show_indexes': True}),

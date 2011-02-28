@@ -92,6 +92,8 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'photos',
+    'posts',
+    'ckeditor',
     'debug_toolbar',
 )
 
@@ -103,3 +105,8 @@ try:
     import settings_local
 except:
     pass
+
+# django-ckeditor app configs
+CKEDITOR_MEDIA_PREFIX = "/site_media/ckeditor/"
+CKEDITOR_UPLOAD_PATH = "%sckeditor_uploads" % MEDIA_ROOT
+CKEDITOR_UPLOAD_PREFIX = "http://localhost:8000/site_media/ckeditor_uploads/"
