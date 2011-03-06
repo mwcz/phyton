@@ -24,7 +24,7 @@ class AdminImageWidget( forms.FileInput ):
 
                 <img src="%s" class="phyton_image" />
 
-            """ % ( value.url ) )
+            """ % value.url )
 
         output.append(super(AdminImageWidget, self).render(name,value,attrs))
 
@@ -75,9 +75,9 @@ class AdminGeneratedSwatchWidget( forms.TextInput ):
                     class="swatch generated_swatch"
                     onclick="
                                 django.jQuery(selected_swatch).css( 'backgroundColor', django.jQuery(this).css('backgroundColor') );
-                                django.jQuery('#id_' + selected_swatch_name ).attr( 'value', rgb2hex(django.jQuery(this).css('backgroundColor')) + 'ff' );
+                                django.jQuery('#id_' + selected_swatch_name ).attr( 'value', rgb2hex(django.jQuery(this).css('backgroundColor')) );
                             " 
-                    style="clear: both; background-color: #%s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % ( value[:6] ) )
+                    style="clear: both; background-color: #%s; float: left; width: 55px; height: 55px; display: block;">&nbsp;</span>""" % value )
         output.append( 
             """<input type="hidden" name="%s" value="%s" id="id_%s" />""" % ( name, value, name ) )
 
@@ -175,21 +175,3 @@ class AdminEditableSwatchWidget( forms.TextInput ):
 
         return mark_safe(u''.join(output))
 
-
-class AdminCKEditorWidget( AdminTextareaWidget ):
-
-    """
-    A textarea upgraded to a rich text area using CKEditor.
-    """
-
-    def render( self, name, value, attrs=None):
-
-        output = []
-
-        output.append( 
-        """
-            <script type="text/javascript" src="/site_media/3rd/ckeditor/ckeditor.js"></script>
-            <textarea name="%s" id="id_%s" class="ckeditor">%s</textarea>
-        """ % ( name, name, value ) )
-
-        return mark_safe(u''.join(output))

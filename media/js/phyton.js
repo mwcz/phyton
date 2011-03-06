@@ -89,7 +89,7 @@
                     color[2] = Math.floor( color[2] / color_count );
 
                     $(selected_swatch).css( 'backgroundColor', 'rgb('+color[0]+','+color[1]+','+color[2]+')' );
-                    $('#id_' + selected_swatch_name ).attr( 'value', rgb2hex( $(selected_swatch).css('backgroundColor') ) + 'ff'  );
+                    $('#id_' + selected_swatch_name ).attr( 'value', rgb2hex( $(selected_swatch).css('backgroundColor') ) );
 
                 };
 

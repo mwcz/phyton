@@ -44,7 +44,6 @@ class PhotoAddForm( forms.ModelForm ):
 class PhotoChangeForm( PhotoAddForm ):
 
     image = forms.ImageField( label = 'PHOTO', widget = AdminImageWidget )
-    text  = forms.CharField( widget = AdminCKEditorWidget )
 
     palette0      = forms.CharField(  label = '',      widget = AdminEditableSwatchWidget )
     palette1      = forms.CharField(  label = '',      widget = AdminEditableSwatchWidget )

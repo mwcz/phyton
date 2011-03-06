@@ -16,7 +16,7 @@ def palette( _image, _size ):
         colors[ (r,g,b) ] = 1
 
     for (r,g,b) in colors:
-        palette.append( "%.2x%.2x%.2xff" % ( r, g, b ) )
+        palette.append( "%.2x%.2x%.2x" % ( r, g, b ) )
 
     print(palette)
 
