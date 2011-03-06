@@ -2,6 +2,8 @@
 
 import os
 
+PROJECT_TITLE = 'clayto.com'
+
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
