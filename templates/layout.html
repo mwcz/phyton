@@ -2,7 +2,9 @@
 
 <html>
 <head>
-    <title>CLAYTO.ORG</title>
+    {% block title %}
+    <title>{{ project_title }}</title>
+    {% endblock title %}
 
 <!-- Syntax highlighting code -->
 <script type="text/javascript" src="/site_media/3rd/sh/scripts/shCore.js"></script>
@@ -18,27 +20,30 @@
 {% include "reset.css" %}
 {% include "print.css" %}
 {% include "site.css" %}
+{% include "photos.css" %}
 </style>
 
 </head>
 
 <body>
 
-<div class="container_12">
+<div id="head" class="container_12">
 
-    <h1> 
-        <span class="z">z</span><span class="i">i</span><span class="p">p</span><span class="t">t</span>
-        <!--
-        <a href="/">
-        <span class="c">c</span><span class="l">l</span><span class="a">a</span><span class="y">y</span><span class="t">t</span><span class="o">o</span>
-        </a>
-        -->
-    </h1>
+{% include "head.html" %}
 
-    {% block content %}
-    {% endblock %}
 
-</div> <!-- /.container_12 -->
+</div>
+
+<div class="clear"></div>
+
+<div id="torso">
+
+{% block torso %}
+{% endblock torso %}
+
+</div> <!-- /#torso -->
+
+{% include "foot.html" %}
 
 </body>
 

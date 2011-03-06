@@ -2,7 +2,7 @@
 /* File: site.css */
 
 body { 
-    background-color: #{{ bg_color }};
+    background-color: #000;
     color: #{{ text_color }};
 }
 
@@ -13,32 +13,131 @@ h1 {
 }
 
 img.photo {
+    position: relative;
+    z-index: 100;
     background-color: #000;
     display: block;
-    margin: 0 auto;
+    margin: -3px auto;
     border: 1px solid #{{ border_color }};      
-    -webkit-box-shadow: 0px -4px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.1),
-                        0px 20px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.2);
-       -moz-box-shadow: 0px -4px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.1),
-                        0px 20px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.2);
-         -o-box-shadow: 0px -4px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.1),
-                        0px 20px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.2);
-            box-shadow: 0px -4px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.1),
-                        0px 20px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.2);
+    -webkit-box-shadow: 0px -5px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7),
+                        0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
+       -moz-box-shadow: 0px -5px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7),
+                        0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
+         -o-box-shadow: 0px -5px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7),
+                        0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
+            box-shadow: 0px -5px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7),
+                        0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
+}
+
+a.photo_thumbnail_link {
+    position: relative;
+    z-index: 100;
+    float: left;
+    width: 200px;
+    margin: 4px;
+    height: 131px;
+    overflow: hidden;
+    padding: 0;
+}
+img.photo_thumbnail {
+    width: 200px;
+}
+
+ul.nav {
+    position: absolute;
+}
+
+ul.nav li a {
+    color: #{{ title_color }};
+    font-size: 1.4em;
+    text-decoration: none;
 }
 
 .controls {
     text-align: center;
-    padding: 0.6em;
+    padding: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0; /* display below the image */
 }
 .controls > span {
-    margin: 0 0.5em;
 }
 .controls .back {
+    text-align: left;
+}
+.controls a {
+    padding: 20px;
+    opacity: 0.05;
+    -webkit-transition: all 0.18s ease;
+       -moz-transition: all 0.18s ease;
+         -o-transition: all 0.18s ease;
+            transition: all 0.18s ease;
+}
+.controls .back a {
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 50%;
 }
 .controls .all {
+    position: absolute;
+    display: none;
 }
 .controls .next {
+    text-align: right;
+}
+.controls .next a {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    right: 0;
+}
+/**********************
+ * head is the header *
+ **********************/
+#head {
+    height: 1.618em;
+}
+
+/************************************************************************
+ * torso is the main block of content in between the head and foot. *
+ ************************************************************************/
+#torso {
+    background-color: #{{ bg_color }};
+    position: relative;
+    text-align: center;
+    border: 1px solid #{{ border_color }};      
+    border-width: 1px 0 1px 0;
+    overflow: hidden;
+}
+
+/*************************
+ * foot is the footer :| *
+ *************************/
+#foot {
+    margin-top: 76px;
+}
+#foot #copy_bar {
+    text-align: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+}
+#foot #copy_bar a {
+    text-decoration: none;
+    opacity: 0.2;
+    -webkit-transition: opacity 0.1618s ease;
+       -moz-transition: opacity 0.1618s ease;
+         -o-transition: opacity 0.1618s ease;
+            transition: opacity 0.1618s ease;
+}
+#foot #copy_bar a:hover {
+    opacity: 1.0;
+}
+#foot #copy_bar a img {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    border: 0;
 }
 
 /* EOF: site.css */
