@@ -22,8 +22,6 @@ def photos( request, _page_number=1 ):
         # return 404 if page doesn't exist or is not an int
         raise Http404
 
-    print(dir(page))
-
     params = {
                 'project_title' : PROJECT_TITLE,
 

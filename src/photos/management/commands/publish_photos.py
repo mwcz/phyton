@@ -13,4 +13,3 @@ class Command( BaseCommand ):
         for photo in photos_to_publish:
             photo.published = True
             photo.save()
-        print( photos_to_publish, "published" )

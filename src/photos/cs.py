@@ -18,6 +18,4 @@ def palette( _image, _size ):
     for (r,g,b) in colors:
         palette.append( "%.2x%.2x%.2x" % ( r, g, b ) )
 
-    print(palette)
-
     return tuple( palette )
