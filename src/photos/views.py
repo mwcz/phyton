@@ -76,7 +76,6 @@ def photo( request, photo_number=1 ):
 
                 # photo-related text
                 'photo_title': new_photo.title,
-                'text': new_photo.text,
 
                 # photo-related data
                 'photo_width' : new_photo.image.width,
