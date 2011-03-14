@@ -2,16 +2,14 @@
 /* File: print.css */
 
 body { 
-    font-family: TerminusMedium, Consolas, FreeSansMono, monospace; 
+    font-family: AmigaForever, Consolas, FreeSansMono, monospace; 
 }
 
 a {
     color: #{{ title_color }};
-    opacity: 0.8;
 }
 a:hover {
     color: #{{ title_color }};
-    opacity: 1.0;
 }
 a:active {
     color: #{{ title_color }};
@@ -28,32 +26,42 @@ h1 a {
 }
 
 .controls {
-    font-family: AmigaForever;
 }
 .controls a {
     text-decoration: none;
     color: #{{ text_color }};
 }
 .controls a:hover {
-    text-shadow: 0px 0px 14px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7 );
-    opacity: 0.10;
-}
-.controls a:active {
-    opacity: 0.2; /* doesn't work */
+    text-shadow: 0px 0px 14px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 1.0 );
+    opacity: 0.30;
 }
 .controls .back {
     font-size: 10em;
-}
-.controls .all {
-    font-size: 4em;
 }
 .controls .next {
     font-size: 10em;
 }
 
+#torso {
+	font: 0.87em/1.4 AmigaForever, monospace;
+	letter-spacing: -0.17em;
+}
+
 #foot {
-    font-family: AmigaForever, Consolas, FreeSansMono, monospace; 
-    font-family: Prociono, Consolas, FreeSansMono, monospace; 
+    font-size: 2em;
+}
+#foot #nav a {
+    font-size: 0.8em;
+    font-family: AmigaForever, monospace;
+}
+
+#copy_bar {
+    font-size: 0.3em;
+    letter-spacing: -0.17em;
+    color: #{{ text_color }};
+}
+#learn {
+    font-size: 0.8em;
 }
 
 @font-face { font-family: "AmigaForever"; src: url("/site_media/fonts/amiga4ever.ttf"); }

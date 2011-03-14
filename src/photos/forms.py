@@ -25,6 +25,12 @@ class PhotoAddForm( forms.ModelForm ):
         m.suggest6 = m.palette6 = p[6]
         m.suggest7 = m.palette7 = p[7]
 
+        # create the directory in which to place the image
+
+
+        # move the image into the directory
+
+
         # resize the image
         img_path = "%s%s" % ( MEDIA_ROOT, m.image )
         img.thumbnail( IMAGE_SIZE_BOUNDS )
@@ -37,7 +43,7 @@ class PhotoAddForm( forms.ModelForm ):
 
     class Meta:
         model  = Photo
-        fields = ("title","image","slug","shot_date",)
+        fields = ('image','title','slug','shot_date','post_date')
 
 
 
@@ -99,6 +105,7 @@ class PhotoChangeForm( PhotoAddForm ):
             "title",
             "slug",
             "shot_date",
+            "post_date",
             "palette0",
             "palette1",
             "palette2",
@@ -116,7 +123,7 @@ class PhotoChangeForm( PhotoAddForm ):
             "suggest6",
             "suggest7",
             "image",
-            "text",
+            #"text",
             )
 
 

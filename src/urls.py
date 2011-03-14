@@ -6,9 +6,6 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 
-    # ckeditor 
-    (r'^ckeditor/', include('ckeditor.urls')),
-
     # serve static media
     (r'^site_media/(?P<path>.*)$', 'django.views.static.serve',
             {'document_root': MEDIA_ROOT, 'show_indexes': True}),
@@ -23,6 +20,7 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
     # photos app urls
+    (r'^learn/$',                           'photos.views.learn' ),
     (r'^photos/$',                          'photos.views.photos' ),
     (r'^photos/(?P<_page_number>.*)$',      'photos.views.photos' ),
     (r'^photo/(?P<photo_number>.*)$',       'photos.views.photo' ),

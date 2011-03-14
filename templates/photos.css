@@ -5,12 +5,25 @@
 
 /* styles for photo number {{ photoset.start_index|add:forloop.counter0 }} */
 #photo{{ photoset.start_index|add:forloop.counter0 }} {
-    border: 1px solid #{{ photo.palette3 }};
 }
 
 /* styles for photo number {{ photoset.start_index|add:forloop.counter0 }}'s link */
 #photo_thumbnail_link{{ photoset.start_index|add:forloop.counter0 }} {
     border: 1px solid #{{ photo.palette3 }};      
+    -webkit-box-shadow: 0px 4px 15px #{{ shadow_color }};
+       -moz-box-shadow: 0px 4px 15px #{{ shadow_color }};
+         -o-box-shadow: 0px 4px 15px #{{ shadow_color }};
+            box-shadow: 0px 4px 15px #{{ shadow_color }};
+    -webkit-transition: -webkit-box-shadow 0.1s ease;
+       -moz-transition:    -moz-box-shadow 0.1s ease;
+         -o-transition:      -o-box-shadow 0.1s ease;
+            transition:         box-shadow 0.1s ease;
+}
+#photo_thumbnail_link{{ photoset.start_index|add:forloop.counter0 }}:hover {
+    -webkit-box-shadow: 0px 4px 25px #{{ shadow_color }};
+       -moz-box-shadow: 0px 4px 25px #{{ shadow_color }};
+         -o-box-shadow: 0px 4px 25px #{{ shadow_color }};
+            box-shadow: 0px 4px 25px #{{ shadow_color }};
 }
 
 {% endfor %}

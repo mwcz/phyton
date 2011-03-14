@@ -1,6 +1,6 @@
+import datetime
 from django.db import models
 from django.forms import ModelForm
-from ckeditor.fields import RichTextField
 
 class Photo( models.Model ):
 
@@ -19,8 +19,10 @@ class Photo( models.Model ):
     text          = RichTextField( blank = True )
 
     mod_date      = models.DateField( 'date modified', auto_now = True,  )
-    post_date     = models.DateField( 'date posted', auto_now_add = True,  )
+    post_date     = models.DateField( 'date to publish', default = datetime.date.today  )
     shot_date     = models.DateField( 'date photo was taken' )
+
+    published     = models.BooleanField( default = False )
 
     # An eight-color palette for the image
     palette0 = models.CharField( max_length = 6, blank = True )

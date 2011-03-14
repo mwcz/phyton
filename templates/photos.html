@@ -8,24 +8,28 @@
 {% block torso %}
 
     <div class="controls">
+
         {% if has_prev %}
         <span class="back" title="Previous">
-            <a href="/photos/{{ prev_num }}">-</a>
+            <a rel="prev" href="/photos/{{ prev_num }}">&#x21b2;</a>
         </span>
         {% endif %}
 
         {% if has_next %}
         <span class="next" title="Next">
-            <a href="/photos/{{ next_num }}">+</a>
+            <a rel="next" href="/photos/{{ next_num }}">&#x21b1;</a>
         </span>
         {% endif %}
+
     </div> <!-- /.controls -->
 
-    <div class="container_12">
+    <div id="gallery" class="container_12">
+
+    <div style="">{{ a.b }}</div>
 
     {% for photo in photoset.object_list %}
 
-    <a class="photo_thumbnail_link" id="photo_thumbnail_link{{ photoset.start_index|add:forloop.counter0 }}" href="/photo/{{ photoset.start_index|add:forloop.counter0 }}">
+    <a class="photo_thumbnail_link grid_3" id="photo_thumbnail_link{{ photoset.start_index|add:forloop.counter0 }}" href="/photo/{{ photoset.start_index|add:forloop.counter0 }}">
 
         <img
             class = "photo_thumbnail"
@@ -37,7 +41,9 @@
 
     {% endfor %}
 
-    </div> <!-- /.container_12 -->
+    <div class="clear"></div>
+
+    </div> <!-- /#gallery -->
 
     <div class="clear"></div>
 

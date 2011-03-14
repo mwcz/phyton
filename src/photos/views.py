@@ -3,16 +3,17 @@ from django.core.paginator import *
 from django.views.defaults import *
 from django.http import Http404
 from photos.models import Photo
+from datetime import date
 from settings import PROJECT_TITLE
 
 def index( request ):
-    new_photo_number = Photo.objects.count()
+    new_photo_number = Photo.objects.filter( published = True ).count()
     return photo( request, new_photo_number )
 
 def photos( request, _page_number=1 ):
 
-    all_photos = Photo.objects.order_by( 'post_date' )
-    p = Paginator( all_photos, 9 )
+    all_photos = Photo.objects.filter( published = True ).order_by( 'post_date', 'pk' )
+    p = Paginator( all_photos, 12 )
 
     try:
         page = p.page( _page_number )
@@ -21,14 +22,7 @@ def photos( request, _page_number=1 ):
         # return 404 if page doesn't exist or is not an int
         raise Http404
 
-    # build (R,G,B) shadow color.  can't use hex encoding since
-    # the R,G,B values must be placed into an rgba(R,G,B,A) CSS3
-    # string.
-    shadow_color = {
-        'r' : int( new_photo.palette2[:2], 16 ),
-        'g' : int( new_photo.palette2[2:4], 16 ),
-        'b' : int( new_photo.palette2[4:], 16 ),
-    }
+    print(dir(page))
 
     params = {
                 'project_title' : PROJECT_TITLE,
@@ -41,16 +35,18 @@ def photos( request, _page_number=1 ):
                 'has_next' : page.has_next(),
                 'prev_num' : page.previous_page_number(),
                 'next_num' : page.next_page_number(),
+                'num_pages': p.num_pages,
+                'page_num' : _page_number,
 
                 # colors
-                'bg_color' : new_photo.palette0,
-                'text_color' : new_photo.palette1,
-                'shadow_color' : shadow_color,
-                'border_color' : new_photo.palette3,
-                'quote_color': new_photo.palette4,
-                'title_color': new_photo.palette5,
-                'palette6' : new_photo.palette6,
-                'palette7' : new_photo.palette7,
+                'bg_color'     : '38393f',
+                'text_color'   : 'fafafa',
+                'border_color' : '91949b',
+                'shadow_color' : '000',
+                'quote_color'  : '',
+                'title_color'  : 'ededef',
+                'palette6'     : '',
+                'palette7'     : '',
     }
 
 
@@ -58,7 +54,7 @@ def photos( request, _page_number=1 ):
 
 def photo( request, photo_number=1 ):
 
-    all_photos = Photo.objects.order_by( 'post_date' )
+    all_photos = Photo.objects.filter( published = True ).order_by( 'post_date' )
     p = Paginator( all_photos, 1 )
 
     try:
@@ -84,6 +80,10 @@ def photo( request, photo_number=1 ):
                 'photo_title': new_photo.title,
                 'text': new_photo.text,
 
+                # photo-related data
+                'photo_width' : new_photo.image.width,
+                'photo_height' : new_photo.image.height,
+
                 # prev/next stuff
                 'new_photo' : new_photo,
                 'has_prev' : page.has_previous(),
@@ -105,4 +105,27 @@ def photo( request, photo_number=1 ):
              }
 
     return render_to_response( 'photo.html', params )
+
+def learn( request ):
+
+    params = {
+                'project_title' : PROJECT_TITLE,
+
+                # colors
+                'bg_color'     : '38393f',
+                'text_color'   : 'fafafa',
+                'border_color' : '91949b',
+                'shadow_color' : '000',
+                'shadow_R'     : '0',
+                'shadow_G'     : '0',
+                'shadow_B'     : '0',
+                'quote_color'  : '',
+                'title_color'  : 'ededef',
+                'palette6'     : '',
+                'palette7'     : '',
+    }
+
+
+    return render_to_response( 'learn.html', params )
+
 
