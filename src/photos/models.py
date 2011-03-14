@@ -16,7 +16,7 @@ class Photo( models.Model ):
     title         = models.CharField( max_length = 1024 )
     slug          = models.SlugField( unique = True )
     caption       = models.CharField( max_length = 1024 )
-    text          = RichTextField( blank = True )
+    #text          = RichTextField( blank = True )
 
     mod_date      = models.DateField( 'date modified', auto_now = True,  )
     post_date     = models.DateField( 'date to publish', default = datetime.date.today  )
