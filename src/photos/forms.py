@@ -1,3 +1,4 @@
+import os
 from django import forms
 from photos.models import Photo
 from photos.cs import palette
@@ -26,13 +27,15 @@ class PhotoAddForm( forms.ModelForm ):
         m.suggest7 = m.palette7 = p[7]
 
         # create the directory in which to place the image
-
-
-        # move the image into the directory
-
+        photo_directory = os.path.join( MEDIA_ROOT, "photos", m.slug )
+        try:
+            os.mkdir( photo_directory )
+        except OSError:
+            pass # it's okay if the directory already exists; it probably can't ever happen since slugs must be unique
 
         # resize the image
-        img_path = "%s%s" % ( MEDIA_ROOT, m.image )
+        photo_filename = str(m.image)
+        img_path = os.path.join( MEDIA_ROOT, photo_filename )
         img.thumbnail( IMAGE_SIZE_BOUNDS )
         img.save( img_path )
 
@@ -87,11 +90,18 @@ class PhotoChangeForm( PhotoAddForm ):
         m.suggest6 = p[6]
         m.suggest7 = p[7]
 
+        # create the directory in which to place the image
+        photo_directory = os.path.join( MEDIA_ROOT, "photos", m.slug )
+        try:
+            os.mkdir( photo_directory )
+        except OSError:
+            pass # it's okay if the directory already exists; it probably can't ever happen since slugs must be unique
+
         # resize the image
-        img_path = "%s%s" % ( MEDIA_ROOT, m.image )
+        photo_filename = str(m.image)
+        img_path = os.path.join( MEDIA_ROOT, photo_filename )
         img.thumbnail( IMAGE_SIZE_BOUNDS )
         img.save( img_path )
-
 
         if commit:
             m.save()
