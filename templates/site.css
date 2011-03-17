@@ -54,11 +54,14 @@ img.photo_thumbnail {
 .controls a {
     position: relative;
     padding: 20px;
-    opacity: 0.05;
+    opacity: 0.25;
     -webkit-transition: all 0.18s ease;
        -moz-transition: all 0.18s ease;
          -o-transition: all 0.18s ease;
             transition: all 0.18s ease;
+}
+.controls a:hover {
+    opacity: 0.30;
 }
 .controls .back a {
     position: absolute;
