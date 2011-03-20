@@ -11,7 +11,7 @@ class PhotosFeed( Feed ):
     description = "a new photo each monday, wednesday, and friday"
 
     def items( self ):
-        return Photo.objects.order_by( '-post_date' )
+        return Photo.objects.filter( published = True ).order_by( 'post_date', 'pk' )
 
     def item_title( self, item ):
         return item.title

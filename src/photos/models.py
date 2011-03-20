@@ -1,3 +1,4 @@
+import os
 import datetime
 from settings import ROOT_URL
 from django.db import models
@@ -7,7 +8,7 @@ class Photo( models.Model ):
 
     def get_photo_number( self ):
         """enumerates all photos and finds the position of a given photo within that enumeration.  used when directly linking to photos."""
-        return [ i for i,v in enumerate( Photo.objects.all(), 1 ) if v == self ][0]
+        return [ i for i,v in enumerate( Photo.objects.filter( published = True ).order_by( 'post_date', 'pk' ), 1 ) if v == self ][0]
 
     def __str__( self ):
         return self.title
@@ -16,6 +17,11 @@ class Photo( models.Model ):
         return '%sphoto/%d' % ( ROOT_URL,  self.get_photo_number() )
 
     def __path__( instance, filename ):
+        try:
+            os.mkdir('./photos')
+            os.mkdir('./photos/%s' % instance.slug )
+        except OSError:
+            pass # directory already exists
         path = 'photos/%s/%s' % ( instance.slug, filename )
         return path
 
