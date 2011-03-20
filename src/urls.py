@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import *
 from django.contrib import admin
 from settings import MEDIA_ROOT
+from photos.feeds import RssPhotosFeed, AtomPhotosFeed
 
 admin.autodiscover()
 
@@ -25,4 +26,9 @@ urlpatterns = patterns('',
     (r'^photos/(?P<_page_number>.*)$',      'photos.views.photos' ),
     (r'^photo/(?P<photo_number>.*)$',       'photos.views.photo' ),
     (r'^$', 'photos.views.index' ),
+
+    # feeds
+    (r'^feeds/rss/$',  RssPhotosFeed() ),
+    (r'^feeds/atom/$', AtomPhotosFeed() ),
+    
 )
