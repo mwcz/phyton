@@ -89,9 +89,10 @@ img.photo_thumbnail {
  * head is the header *
  **********************/
 #head {
-    height: 1.618em;
+    padding-top: 2px;
     background-color: #000;
     width: 100%;
+    text-align: center;
 }
 
 /************************************************************************
