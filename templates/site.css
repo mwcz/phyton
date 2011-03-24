@@ -159,9 +159,11 @@ img.photo_thumbnail {
  *************************/
 #foot {
     background-color: #000;
-    padding-top: 30px;
+    width: 100%;
+    padding-top: 25px;
     text-align: center;
     border-bottom: 1px solid #{{ border_color }};
+    margin-bottom: 24px;
     z-index: 200;
     -webkit-box-shadow: 0px -5px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7),
                         0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
@@ -178,7 +180,7 @@ img.photo_thumbnail {
 }
 #foot #copy_bar a {
     text-decoration: none;
-    opacity: 0.2;
+    opacity: 0.5;
     -webkit-transition: opacity 0.1618s ease;
        -moz-transition: opacity 0.1618s ease;
          -o-transition: opacity 0.1618s ease;
@@ -200,25 +202,20 @@ img.photo_thumbnail {
             transform: scale(0.95);
 }
 #foot #nav {
-    overflow: hidden;
-    width: 940px;
-    border-bottom: 1px solid #{{ border_color }};
-    margin: 0 auto;
 }
 #foot #nav a {
-    position: relative;
-    text-decoration: none;
-    padding: 2.5em 1.5em;
     opacity: 0.5;
-    bottom: -0.5em;
-    -webkit-transition: bottom 0.2618s ease;
-       -moz-transition: bottom 0.2618s ease;
-         -o-transition: bottom 0.2618s ease;
-            transition: bottom 0.2618s ease;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    border-bottom: 2px solid #{{ border_color }};
+    text-decoration: none;
+    -webkit-transition: opacity 0.1618s ease;
+       -moz-transition: opacity 0.1618s ease;
+         -o-transition: opacity 0.1618s ease;
+            transition: opacity 0.1618s ease;
 }
 #foot #nav a:hover {
     opacity: 1.0;
-    bottom: 0.0em;
 }
 
 /* EOF: site.css */
