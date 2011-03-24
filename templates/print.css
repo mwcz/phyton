@@ -2,8 +2,7 @@
 /* File: print.css */
 
 body { 
-    font-family: TerminusMedium, LucidaConsole, Monaco, monospace; 
-    font-size: 1em;
+    font-family: AmigaForever, Consolas, FreeSansMono, monospace; 
 }
 
 a {
@@ -17,7 +16,8 @@ a:active {
 }
 
 h1 { 
-    font-size: 1.4em;
+    font-family: Prociono;
+    font-size: 4em;
     font-weight: normal;
 }
 h1 a { 
@@ -42,17 +42,25 @@ h1 a {
 }
 
 #torso {
+	font: 0.87em/1.4 AmigaForever, monospace;
+	letter-spacing: -0.17em;
 }
 
-#head {
+#foot {
+    font-size: 2em;
 }
 #foot #nav a {
+    font-size: 0.8em;
+    font-family: AmigaForever, monospace;
 }
 
 #copy_bar {
+    font-size: 0.3em;
+    letter-spacing: -0.17em;
     color: #{{ text_color }};
 }
 #learn {
+    font-size: 0.8em;
 }
 
 @font-face { font-family: "AmigaForever"; src: url("/site_media/fonts/amiga4ever.ttf"); }

@@ -8,6 +8,7 @@ body {
 
 h1 {
     text-align: center;
+    margin: 0.2em 0;
     color: #{{ title_color }};
 }
 
@@ -88,29 +89,11 @@ img.photo_thumbnail {
  * head is the header *
  **********************/
 #head {
-    font-size: 1.04em;
+    height: 1.618em;
     background-color: #000;
     width: 100%;
-    padding: 1em 0;
-    text-align: left;
 }
-#head #nav {
-    overflow: hidden;
-}
-#head #nav a {
-    text-align: center;
-    position: relative;
-    text-decoration: none;
-    opacity: 0.5;
-    -webkit-transition: opacity 0.2618s ease;
-       -moz-transition: opacity 0.2618s ease;
-         -o-transition: opacity 0.2618s ease;
-            transition: opacity 0.2618s ease;
-}
-#head #nav a:hover {
-    opacity: 1.0;
-    bottom: 0.0em;
-}
+
 /************************************************************************
  * torso is the main block of content in between the head and foot. *
  ************************************************************************/
@@ -143,7 +126,7 @@ img.photo_thumbnail {
             box-shadow: 0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
 }
 #torso #learn {
-    padding: 2em 0;
+    padding: 2em;
     text-align: left;
 }
 #torso #debts {
@@ -176,7 +159,7 @@ img.photo_thumbnail {
  *************************/
 #foot {
     background-color: #000;
-    padding-top: 10px;
+    padding-top: 30px;
     text-align: center;
     border-bottom: 1px solid #{{ border_color }};
     z-index: 200;
@@ -188,9 +171,6 @@ img.photo_thumbnail {
                         0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
             box-shadow: 0px -5px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7),
                         0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
-}
-#foot #photo_title {
-    width: {{ photo_width }}px;
 }
 #foot #copy_bar {
     margin-top: 16px;
@@ -219,6 +199,26 @@ img.photo_thumbnail {
          -o-transform: scale(0.95);
             transform: scale(0.95);
 }
-
+#foot #nav {
+    overflow: hidden;
+    width: 940px;
+    border-bottom: 1px solid #{{ border_color }};
+    margin: 0 auto;
+}
+#foot #nav a {
+    position: relative;
+    text-decoration: none;
+    padding: 2.5em 1.5em;
+    opacity: 0.5;
+    bottom: -0.5em;
+    -webkit-transition: bottom 0.2618s ease;
+       -moz-transition: bottom 0.2618s ease;
+         -o-transition: bottom 0.2618s ease;
+            transition: bottom 0.2618s ease;
+}
+#foot #nav a:hover {
+    opacity: 1.0;
+    bottom: 0.0em;
+}
 
 /* EOF: site.css */
