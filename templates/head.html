@@ -1,5 +1,11 @@
 <div id="head">
 
-    <iframe src="http://www.facebook.com/plugins/like.php?href&amp;layout=button_count&amp;show_faces=true&amp;width=50&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:50px; height:21px;" allowTransparency="true"></iframe>
+{% if new_photo %}
+
+    <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="clayto_com">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+
+    <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fclayto.com%2F&amp;layout=button_count&amp;show_faces=true&amp;width=80&amp;action=like&amp;font=arial&amp;colorscheme=light&amp;height=20" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:80px; height:20px;" allowTransparency="true"></iframe>
+
+{% endif %}
 
 </div>
