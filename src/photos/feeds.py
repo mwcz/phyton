@@ -11,7 +11,8 @@ class PhotosFeed( Feed ):
     description = "a new photo each monday, wednesday, and friday"
 
     def items( self ):
-        return Photo.objects.filter( published = True ).order_by( 'post_date', 'pk' )
+        s = list( Photo.objects.filter( published = True ).order_by( 'post_date', 'pk' ) )
+        return s[ len(s) - 12:] # only the 12 latest photos
 
     def item_title( self, item ):
         return item.title
@@ -25,7 +26,7 @@ class PhotosFeed( Feed ):
     author_name = 'Michael Clayton'
     author_url  = 'http://clayto.com/'
     feed_copyright = 'Copyright (c) 2003-2011 Michael Clayton.  License: <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons BY-NC-SA 3.0</a>'
-    ttl = 1440
+    ttl = 1440 # one day worth of minutes
 
 class RssPhotosFeed( PhotosFeed ):
     feed_type = Rss201rev2Feed

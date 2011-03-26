@@ -29,13 +29,14 @@
 
     {% for photo in photoset.object_list %}
 
-    <a class="photo_thumbnail_link grid_3" id="photo_thumbnail_link{{ photoset.start_index|add:forloop.counter0 }}" href="/photo/{{ photoset.start_index|add:forloop.counter0 }}">
+    <a class = "photo_thumbnail_link grid_3"
+       id    = "photo_thumbnail_link_{{ photo.permalink }}"
+       href  = "/photo/{{ photo.slug }}">
 
-        <img
-            class = "photo_thumbnail"
-               id = "photo_thumbnail{{ photoset.start_index|add:forloop.counter0 }}" {# calculates the page number of each photo  #}
-              src = "/site_media/{{ photo.image }}"
-              alt = "{{ photo.title }}" />
+            <img class = "photo_thumbnail"
+                 id    = "photo_thumbnail_{{ photo.permalink }}" {# calculates the page number of each photo  #}
+                 src   = "/site_media/{{ photo.image }}"
+                 alt   = "{{ photo.title }}" />
 
     </a>
 

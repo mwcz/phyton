@@ -1,5 +1,8 @@
 import os
+import sys
 import datetime
+from hashlib import md5
+from random import randint
 from settings import ROOT_URL
 from django.db import models
 from django.forms import ModelForm
@@ -14,7 +17,7 @@ class Photo( models.Model ):
         return self.title
 
     def get_absolute_url( self ):
-        return '%sphoto/%d' % ( ROOT_URL,  self.get_photo_number() )
+        return '%sphoto/permalink/%s' % ( ROOT_URL, self.permalink )
 
     def __path__( instance, filename ):
         try:
@@ -25,12 +28,22 @@ class Photo( models.Model ):
         path = 'photos/%s/%s' % ( instance.slug, filename )
         return path
 
+    def save( self, *args, **kwargs ):
+
+        # if this is the first save, create a permalink by hashing the primary key and the
+        # current time (precise to microseconds on linux)
+        if not self.pk:
+            self.permalink = md5( '%d%s' % ( randint(0,sys.maxint), datetime.datetime.now() ) ).hexdigest()
+
+        super( Photo, self ).save( *args, **kwargs )
+
     image         = models.ImageField( upload_to = __path__ )
 
     title         = models.CharField( max_length = 1024 )
     slug          = models.SlugField( unique = True )
     caption       = models.CharField( max_length = 1024 )
     #text          = RichTextField( blank = True )
+    permalink     = models.CharField( max_length = 32, editable = False )
 
     mod_date      = models.DateField( 'date modified', auto_now = True,  )
     post_date     = models.DateField( 'date to publish', default = datetime.date.today  )

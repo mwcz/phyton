@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    <title>{{ project_title }} {% if photo_title %}"{{ photo_title }}"{% endif %}</title>
+    <title>{{ project_title }} {% if this_photo %}"{{ this_photo.title }}"{% endif %}</title>
 {% endblock title %}
 
 {% block torso %}
@@ -9,15 +9,15 @@
     {% block controls %}
     <div class="controls">
 
-        {% if has_prev %}
+        {% if prev_photo %}
         <span class="back" title="Previous">
-            <a rel="prev" href="/photo/{{ prev_num }}">&#x21b2;</a>
+            <a rel="prev" href="/photo/{{ prev_photo.slug }}">&#x21b2;</a>
         </span>
         {% endif %}
 
-        {% if has_next %}
+        {% if next_photo %}
         <span class="next" title="Next">
-            <a rel="next" href="/photo/{{ next_num }}">&#x21b1;</a>
+            <a rel="next" href="/photo/{{ next_photo.slug }}">&#x21b1;</a>
         </span>
         {% endif %}
 
@@ -25,7 +25,7 @@
     {% endblock controls %}
 
     {% block photo %}
-    <img class="photo thumbnail" width="{{ photo_width }}" height="{{ photo_height }}" src="/site_media/{{ new_photo.image }}" alt="{{ photo_title }}" />
+    <img class="photo thumbnail" width="{{ this_photo.image.width }}" height="{{ this_photo.image.height }}" src="/site_media/{{ this_photo.image }}" alt="{{ this_photo.title }}" />
     {% endblock photo %}
 
 {% endblock torso %}

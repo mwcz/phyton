@@ -21,11 +21,12 @@ urlpatterns = patterns('',
     (r'^admin/', include(admin.site.urls)),
 
     # photos app urls
-    (r'^learn/$',                           'photos.views.learn' ),
-    (r'^photos/$',                          'photos.views.photos' ),
-    (r'^photos/(?P<_page_number>.*)$',      'photos.views.photos' ),
-    (r'^photo/(?P<photo_number>.*)$',       'photos.views.photo' ),
-    (r'^$', 'photos.views.index' ),
+    (r'^learn/$',                                   'photos.views.learn' ),
+    (r'^photos/$',                                  'photos.views.photos' ),
+    (r'^photos/(?P<_page_number>.*)$',              'photos.views.photos' ),
+    (r'^photo/permalink/(?P<photo_permalink>.*)$',  'photos.views.photo' ),
+    (r'^photo/(?P<photo_slug>.*)$',                 'photos.views.photo' ),
+    (r'^$',                                         'photos.views.index' ),
 
     # feeds
     (r'^feeds/rss/$',  RssPhotosFeed() ),

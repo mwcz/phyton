@@ -27,7 +27,6 @@ def palette( _image, _size ):
     for i in range( len( code_book ) ):
         rgb =  px_avg( compress( code_ids == i, pixels, 0 ) )
         clusters.append( "%.2x%.2x%.2x" % ( rgb[0], rgb[1], rgb[2] ) )
-        print(rgb,clusters[i])
 
     # since kd-means doesn't always find exactly _size centroids,
     # fill in any remaining centroids with black.
