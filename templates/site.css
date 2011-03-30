@@ -207,6 +207,10 @@ img.photo_thumbnail {
 #foot #bottom_bar #copyright {
     text-align: right;
 }
+#foot #bottom_bar #copyright #cc_license {
+    position: relative;
+    top: -6px;
+}
 #foot #nav a {
     opacity: 0.5;
     padding-top: 1em;
