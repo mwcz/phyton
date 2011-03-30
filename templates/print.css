@@ -42,8 +42,8 @@ a:active {
     font-family: AmigaForever, Fixedsys,  monospace;
 }
 
-#copy_bar {
-    font-size: 0.5em;
+#bottom_bar {
+    font-size: 0.6em;
     color: #{{ text_color }};
 }
 #learn {

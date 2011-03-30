@@ -176,11 +176,11 @@ img.photo_thumbnail {
             box-shadow: 0px -5px 20px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7),
                         0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
 }
-#foot #copy_bar {
-    margin-top: 16px;
+#foot #bottom_bar {
+    margin-top: 36px;
     margin-bottom: 16px;
 }
-#foot #copy_bar a {
+#foot #bottom_bar a {
     text-decoration: none;
     opacity: 0.5;
     -webkit-transition: opacity 0.1618s ease;
@@ -188,22 +188,24 @@ img.photo_thumbnail {
          -o-transition: opacity 0.1618s ease;
             transition: opacity 0.1618s ease;
 }
-#foot #copy_bar a:hover {
+#foot #bottom_bar a:hover {
     opacity: 1.0;
 }
-#foot #copy_bar a img {
-    margin-top: 16px;
-    margin-bottom: 16px;
+#foot #bottom_bar a img {
     border: 0;
     vertical-align: top;
 }
-#foot #copy_bar a img:active {
+#foot #bottom_bar a img:active {
     -webkit-transform: scale(0.95);
        -moz-transform: scale(0.95);
          -o-transform: scale(0.95);
             transform: scale(0.95);
 }
-#foot #nav {
+#foot #bottom_bar #feeds {
+    text-align: left;
+}
+#foot #bottom_bar #copyright {
+    text-align: right;
 }
 #foot #nav a {
     opacity: 0.5;
