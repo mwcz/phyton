@@ -12,7 +12,7 @@ random.seed( 13 )
 def palette( _image, _size ):
     """Calculates the 'important' colors in an image using kd-means."""
     img = _image.copy()
-    img.thumbnail( (64,64) )            # downsize the image so kd-means will run MUCH faster.
+    img.thumbnail( (64,64) )            # downsize the image so k-means will run MUCH faster.
 
     pixels = list( img.getdata() )
     wh_pixels = vq.whiten( pixels )
