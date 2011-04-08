@@ -7,7 +7,7 @@ from settings import ROOT_URL
 from django.db import models
 from django.forms import ModelForm
 from PIL import Image
-from settings import IMAGE_SIZE_BOUNDS, MEDIA_ROOT
+from settings import IMAGE_SIZE_BOUNDS, IMAGE_THUMBNAIL_SIZE_BOUNDS, MEDIA_ROOT
 from photos.cs import palette
 
 class Photo( models.Model ):
@@ -21,6 +21,16 @@ class Photo( models.Model ):
 
     def get_absolute_url( self ):
         return '%sphoto/permalink/%s' % ( ROOT_URL, self.permalink )
+
+    def create_thumbnail_path( self, filepath ):
+
+        # create the file path for the thumbnail image 
+        split_path = os.path.split( filepath )
+        thumbnail_filename = "thumbnail_%s" % split_path[1]
+        thumbnail_path = os.path.join( split_path[0], thumbnail_filename )
+
+        return thumbnail_path
+
 
     def __path__( instance, filename ):
         path = os.path.join( 'photos', instance.slug, filename )
@@ -52,18 +62,26 @@ class Photo( models.Model ):
         self.suggest6 = self.palette6 = p[6]
         self.suggest7 = self.palette7 = p[7]
 
-        # save the record again to preserve the palette colors
-        super( Photo, self ).save( *args, **kwargs )
-
         # resize the image
         photo_filename = str(self.image)
         img_path = os.path.join( MEDIA_ROOT, photo_filename )
-        img.thumbnail( IMAGE_SIZE_BOUNDS )
-        img.save( img_path )
 
+        # resize down to the maximum size for the main image, then save
+        img.thumbnail( IMAGE_SIZE_BOUNDS, Image.ANTIALIAS )
+        img.save( img_path )
+        
+        # resize down to maximum size for thumbnails, then save
+        thumbnail_path = self.create_thumbnail_path( img_path )
+        img.thumbnail( IMAGE_THUMBNAIL_SIZE_BOUNDS, Image.ANTIALIAS )
+        img.save( thumbnail_path )
+        self.thumbnail = thumbnail_path
+
+        # save the record again to preserve the palette colors and thumbnail path
+        super( Photo, self ).save( *args, **kwargs )
 
 
     image         = models.ImageField( upload_to = __path__ )
+    thumbnail     = models.CharField( max_length = 1024 )
 
     title         = models.CharField( max_length = 1024 )
     slug          = models.SlugField( unique = True )

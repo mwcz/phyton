@@ -29,14 +29,6 @@ img.photo {
                         0px  5px 40px rgba( {{ shadow_R }}, {{ shadow_G }}, {{ shadow_B }}, 0.7);
 }
 
-a.photo_thumbnail_link {
-    height: 146px;
-    overflow: hidden;
-}
-img.photo_thumbnail {
-    width: 220px;
-    min-height: 146px; /* make sure thumbnails are at least 146px tall, otherwise there will be empty space inside the <a>'s border */
-}
 
 .controls {
     text-align: center;

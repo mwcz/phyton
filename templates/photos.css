@@ -1,9 +1,9 @@
 
-/* File: photos.css */
-{% for photo in photoset.object_list %}
-/* styles for photo {{ photo.permalink }} */
-#photo_thumbnail_link_{{ photo.permalink }} {
-    border: 1px solid #{{ photo.palette3 }};      
+/* FILE: photos.css */
+
+a.photo_thumbnail_link {
+    height: 146px;
+    overflow: hidden;
     -webkit-box-shadow: 0px 4px 15px #{{ shadow_color }};
        -moz-box-shadow: 0px 4px 15px #{{ shadow_color }};
          -o-box-shadow: 0px 4px 15px #{{ shadow_color }};
@@ -13,14 +13,17 @@
          -o-transition:      -o-box-shadow 0.1s ease;
             transition:         box-shadow 0.1s ease;
 }
-#photo_thumbnail_link_{{ photo.permalink }}:hover {
+a.photo_thumbnail_link:hover {
     -webkit-box-shadow: 0px 4px 25px #{{ shadow_color }};
        -moz-box-shadow: 0px 4px 25px #{{ shadow_color }};
          -o-box-shadow: 0px 4px 25px #{{ shadow_color }};
             box-shadow: 0px 4px 25px #{{ shadow_color }};
 }
-/* end of styles for photo {{ photo.permalink }} */
-
-{% endfor %}
+img.photo_thumbnail {
+    width: 220px;
+    min-height: 146px; /* make sure thumbnails are at least 146px tall, otherwise there will be empty space inside the <a>'s border */
+}
+{% for photo in photoset.object_list %}
+#photo_thumbnail_link_{{ photo.permalink }} { border: 1px solid #{{ photo.palette3 }}; } {% endfor %}
 
 /* EOF: photos.css */
