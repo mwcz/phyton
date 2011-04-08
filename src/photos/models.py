@@ -6,6 +6,9 @@ from random import randint
 from settings import ROOT_URL
 from django.db import models
 from django.forms import ModelForm
+from PIL import Image
+from settings import IMAGE_SIZE_BOUNDS, MEDIA_ROOT
+from photos.cs import palette
 
 class Photo( models.Model ):
 
@@ -20,12 +23,7 @@ class Photo( models.Model ):
         return '%sphoto/permalink/%s' % ( ROOT_URL, self.permalink )
 
     def __path__( instance, filename ):
-        try:
-            os.mkdir('./photos')
-            os.mkdir('./photos/%s' % instance.slug )
-        except OSError:
-            pass # directory already exists
-        path = 'photos/%s/%s' % ( instance.slug, filename )
+        path = os.path.join( 'photos', instance.slug, filename )
         return path
 
     def save( self, *args, **kwargs ):
@@ -35,7 +33,35 @@ class Photo( models.Model ):
         if not self.pk:
             self.permalink = md5( '%d%s' % ( randint(0,sys.maxint), datetime.datetime.now() ) ).hexdigest()
 
+        # save so that the image file will be uploaded
         super( Photo, self ).save( *args, **kwargs )
+
+        # get the image's palette
+        img = Image.open( self.image )
+        p = palette( img, 8 )
+
+        # initialize each palette color.  by default the
+        # "custom palette" is the same as the "suggested palette".
+        # each color is in hex RRGGBB format.
+        self.suggest0 = self.palette0 = p[0]
+        self.suggest1 = self.palette1 = p[1]
+        self.suggest2 = self.palette2 = p[2]
+        self.suggest3 = self.palette3 = p[3]
+        self.suggest4 = self.palette4 = p[4]
+        self.suggest5 = self.palette5 = p[5]
+        self.suggest6 = self.palette6 = p[6]
+        self.suggest7 = self.palette7 = p[7]
+
+        # save the record again to preserve the palette colors
+        super( Photo, self ).save( *args, **kwargs )
+
+        # resize the image
+        photo_filename = str(self.image)
+        img_path = os.path.join( MEDIA_ROOT, photo_filename )
+        img.thumbnail( IMAGE_SIZE_BOUNDS )
+        img.save( img_path )
+
+
 
     image         = models.ImageField( upload_to = __path__ )
 
