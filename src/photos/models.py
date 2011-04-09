@@ -38,43 +38,77 @@ class Photo( models.Model ):
 
     def save( self, *args, **kwargs ):
 
-        # if this is the first save, create a permalink by hashing the primary key and the
-        # current time (precise to microseconds on linux)
+        # determine if this is the first time this record has been saved BEFORE
+        # the super().save() below (because that save will create the pk).
+        # we need to know if it was the first save AFTER the super().save()
+        first_save = False
         if not self.pk:
-            self.permalink = md5( '%d%s' % ( randint(0,sys.maxint), datetime.datetime.now() ) ).hexdigest()
+            first_save = True
 
         # save so that the image file will be uploaded
         super( Photo, self ).save( *args, **kwargs )
 
-        # get the image's palette
         img = Image.open( self.image )
-        p = palette( img, 8 )
-
-        # initialize each palette color.  by default the
-        # "custom palette" is the same as the "suggested palette".
-        # each color is in hex RRGGBB format.
-        self.suggest0 = self.palette0 = p[0]
-        self.suggest1 = self.palette1 = p[1]
-        self.suggest2 = self.palette2 = p[2]
-        self.suggest3 = self.palette3 = p[3]
-        self.suggest4 = self.palette4 = p[4]
-        self.suggest5 = self.palette5 = p[5]
-        self.suggest6 = self.palette6 = p[6]
-        self.suggest7 = self.palette7 = p[7]
-
         # resize the image
         photo_filename = str(self.image)
         img_path = os.path.join( MEDIA_ROOT, photo_filename )
 
+        img_hash = md5( img.tostring() ).hexdigest()
+
+        print( "current: %s" % self.image_hash )
+        print( "previou: %s" % img_hash )
+
         # resize down to the maximum size for the main image, then save
-        img.thumbnail( IMAGE_SIZE_BOUNDS, Image.ANTIALIAS )
-        img.save( img_path )
+        if img.size[0] > IMAGE_SIZE_BOUNDS[0] or img.size[1] > IMAGE_SIZE_BOUNDS[1]:
+            img.thumbnail( IMAGE_SIZE_BOUNDS )
+            img.save( img_path )
+
+            img_hash = md5( img.tostring() ).hexdigest()
+
+            # resize down to maximum size for thumbnails, then save
+            thumbnail_path = self.create_thumbnail_path( img_path )
+            img.thumbnail( IMAGE_THUMBNAIL_SIZE_BOUNDS, Image.ANTIALIAS )
+            img.save( thumbnail_path )
+            self.thumbnail = thumbnail_path
+
+        # if a new image has been uploaded
+        if self.image_hash != img_hash:
+            # initialize each palette color.  by default the
+            # "custom palette" is the same as the "suggested palette".
+            # each color is in hex RRGGBB format.
+            print("generating palette; setting suggestions")
         
-        # resize down to maximum size for thumbnails, then save
-        thumbnail_path = self.create_thumbnail_path( img_path )
-        img.thumbnail( IMAGE_THUMBNAIL_SIZE_BOUNDS, Image.ANTIALIAS )
-        img.save( thumbnail_path )
-        self.thumbnail = thumbnail_path
+            # get the image's palette
+            p = palette( img, 8 )
+            self.suggest0 = p[0]
+            self.suggest1 = p[1]
+            self.suggest2 = p[2]
+            self.suggest3 = p[3]
+            self.suggest4 = p[4]
+            self.suggest5 = p[5]
+            self.suggest6 = p[6]
+            self.suggest7 = p[7]
+
+            # update the image hash
+            self.image_hash = img_hash
+
+
+        # if this is the first save...
+        if first_save:
+            # create a permalink by hashing the primary key and the current time (precise to microseconds on linux)
+            self.permalink = md5( '%d%s' % ( randint(0,sys.maxint), datetime.datetime.now() ) ).hexdigest()
+
+            print("first upload; setting palette to suggested palette")
+            # set the current palette to the suggested palette
+            self.palette0 = self.suggest0
+            self.palette1 = self.suggest1
+            self.palette2 = self.suggest2
+            self.palette3 = self.suggest3
+            self.palette4 = self.suggest4
+            self.palette5 = self.suggest5
+            self.palette6 = self.suggest6
+            self.palette7 = self.suggest7
+
 
         # save the record again to preserve the palette colors and thumbnail path
         super( Photo, self ).save( *args, **kwargs )
@@ -82,6 +116,7 @@ class Photo( models.Model ):
 
     image         = models.ImageField( upload_to = __path__ )
     thumbnail     = models.CharField( max_length = 1024 )
+    image_hash    = models.CharField( max_length = 32 ) # md5 digest of the image's pixels
 
     title         = models.CharField( max_length = 1024 )
     slug          = models.SlugField( unique = True )
