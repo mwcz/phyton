@@ -55,9 +55,6 @@ class Photo( models.Model ):
 
         img_hash = md5( img.tostring() ).hexdigest()
 
-        print( "current: %s" % self.image_hash )
-        print( "previou: %s" % img_hash )
-
         # resize down to the maximum size for the main image, then save
         if img.size[0] > IMAGE_SIZE_BOUNDS[0] or img.size[1] > IMAGE_SIZE_BOUNDS[1]:
             img.thumbnail( IMAGE_SIZE_BOUNDS )
@@ -76,7 +73,6 @@ class Photo( models.Model ):
             # initialize each palette color.  by default the
             # "custom palette" is the same as the "suggested palette".
             # each color is in hex RRGGBB format.
-            print("generating palette; setting suggestions")
         
             # get the image's palette
             p = palette( img, 8 )
@@ -98,7 +94,6 @@ class Photo( models.Model ):
             # create a permalink by hashing the primary key and the current time (precise to microseconds on linux)
             self.permalink = md5( '%d%s' % ( randint(0,sys.maxint), datetime.datetime.now() ) ).hexdigest()
 
-            print("first upload; setting palette to suggested palette")
             # set the current palette to the suggested palette
             self.palette0 = self.suggest0
             self.palette1 = self.suggest1
