@@ -35,7 +35,7 @@ class Migration(DataMigration):
             img = Image.open( img_path )
 
             img.thumbnail( IMAGE_THUMBNAIL_SIZE_BOUNDS, Image.ANTIALIAS )
-            img.save( thumbnail_abs_path )
+            img.save( thumbnail_abs_path, quality=95 )
             photo.thumbnail = thumbnail_path
 
             photo.save()
