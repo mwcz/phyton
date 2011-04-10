@@ -57,16 +57,8 @@ class Photo( models.Model ):
 
         # resize down to the maximum size for the main image, then save
         if img.size[0] > IMAGE_SIZE_BOUNDS[0] or img.size[1] > IMAGE_SIZE_BOUNDS[1]:
-            img.thumbnail( IMAGE_SIZE_BOUNDS )
-            img.save( img_path )
-
-            img_hash = md5( img.tostring() ).hexdigest()
-
-            # resize down to maximum size for thumbnails, then save
-            thumbnail_path = self.create_thumbnail_path( img_path )
-            img.thumbnail( IMAGE_THUMBNAIL_SIZE_BOUNDS, Image.ANTIALIAS )
-            img.save( thumbnail_path )
-            self.thumbnail = thumbnail_path
+            img.thumbnail( IMAGE_SIZE_BOUNDS, Image.ANTIALIAS )
+            img.save( img_path, quality=95 )
 
         # if a new image has been uploaded
         if self.image_hash != img_hash:
@@ -84,6 +76,15 @@ class Photo( models.Model ):
             self.suggest5 = p[5]
             self.suggest6 = p[6]
             self.suggest7 = p[7]
+
+            img_hash = md5( img.tostring() ).hexdigest()
+
+            # resize down to maximum size for thumbnails, then save
+            thumbnail_rel_path = self.create_thumbnail_path( str( self.image ) )
+            thumbnail_abs_path = self.create_thumbnail_path( img_path )
+            img.thumbnail( IMAGE_THUMBNAIL_SIZE_BOUNDS, Image.ANTIALIAS )
+            img.save( thumbnail_abs_path, quality=95 )
+            self.thumbnail = thumbnail_rel_path
 
             # update the image hash
             self.image_hash = img_hash
