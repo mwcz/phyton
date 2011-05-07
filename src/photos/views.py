@@ -50,10 +50,18 @@ def photos( request, _page_number=1 ):
     params['num_pages'] = p.num_pages
     params['page_num']  = _page_number
 
-	# colors
+    # colors
     params['shadow_R'] = 0
     params['shadow_G'] = 0
     params['shadow_B'] = 0
+
+    # scrollbar 
+    width = 940 # 940 pixels: 960 pixel width minus 20 px of gutter space (www.960.gs)
+    scrollbar_page_width = int( width / p.num_pages )
+    scrollbar_initial = (page.start_index() - 1) * int( width / Photo.objects.filter( published = True ).count() )
+
+    params['scrollbar_initial'] = scrollbar_initial
+    params['scrollbar_page_width']   = scrollbar_page_width
 
     return render_to_response( 'photos.html', params )
 

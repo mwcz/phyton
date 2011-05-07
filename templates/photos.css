@@ -26,4 +26,19 @@ img.photo_thumbnail {
 {% for photo in photoset.object_list %}
 #photo_thumbnail_link_{{ photo.permalink }} { border: 1px solid #{{ photo.palette3 }}; } {% endfor %}
 
+#photos_scrollbar {
+    margin-top : 1.9em;
+    font-size  : 0.8em;
+    overflow   : hidden;
+}
+#photos_scrollbar span {
+    height: 4px;
+    background-color: grey;
+    padding: 5px solid grey;
+    float: left;
+    position: relative;
+    left: {{scrollbar_initial}}px;
+    width: {{scrollbar_page_width}}px;
+}
+
 /* EOF: photos.css */
