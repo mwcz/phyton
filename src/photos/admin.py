@@ -9,6 +9,12 @@ class PhotoAdmin( admin.ModelAdmin ):
     form                = PhotoChangeForm
     #date_hierarchy      = 'post_date'
     prepopulated_fields = { 'slug' : ( 'title',) }
+    list_display        = ('title','published','mod_date','post_date',)
+    list_editable       = ('published',)
+    list_filter         = ('post_date','published',)
+    search_fields       = ('title','caption','post_date','slug',)
+    save_on_top         = True
+    ordering            = ('-post_date',)
 
     # copied from the UserAdmin in django/contrib/auth/admin.py
     def get_form( self, request, obj=None, **kwargs ):
