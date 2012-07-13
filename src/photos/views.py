@@ -25,10 +25,13 @@ def index( request ):
     latest_photo = list( Photo.objects.filter( published = True ).order_by( 'post_date', 'pk' ) )[-1]
     return photo( request, photo_slug = latest_photo.slug )
 
-def photos( request, _page_number=1 ):
+def photos( request, _page_number=0 ):
 
     all_photos = Photo.objects.filter( published = True ).order_by( 'post_date', 'pk' )
     p = Paginator( all_photos, 12 )
+
+    if _page_number == 0:
+        _page_number = p.num_pages
 
     try:
         page = p.page( _page_number )
