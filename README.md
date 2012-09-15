@@ -2,7 +2,7 @@ Phyton
 ======
 
 Phyton is a photoblogging software written in Python and powered by Django.
-The "killer feature", if you could call it that, is dynamic color themes for
+The "killer feature", if you could call it that, is dynamic color scheme for
 each image.  Examples:
 
 ![Photograph titled X10-0](http://mwcz.org/img/sample-x10-0.png)
@@ -20,5 +20,5 @@ customizability or modularity you might be expecting!
 If you require extra features, feel free to hack on it.  If you have any
 questions, feel free to contact me!
 
-@mwcz
-mwc@clayto.com
+* @mwcz
+* [mwc@clayto.com](mailto:mwc@clayto.com)
