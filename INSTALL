@@ -1,0 +1,26 @@
+Phyton Installation
+===================
+
+Installation guide for Phyton.  Please note, this installation procedure is
+hardly tested.  Be ready for a rocky road.
+
+Install all the required packages from PyPI:
+
+    pip install -r REQUIREMENTS
+
+Make a copy of `src/settings.py.sample`:
+
+    cd src
+    cp settings.py.sample settings.py
+
+Then edit `settings.py` to customize Phyton to your liking.
+
+Initialize the database.
+
+    src/manage.py syncdb
+
+See if it works:
+
+    src/manage.py runserver
+
+TODO: finish this guide :)
