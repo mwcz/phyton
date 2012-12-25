@@ -4,6 +4,11 @@ Phyton Installation
 Installation guide for Phyton.  Please note, this installation procedure is
 hardly tested.  Be ready for a rocky road.
 
+First, install the  `libjpeg-dev` package is also required, but not available
+through PyPI.
+
+    sudo apt-get install libjpeg-dev
+
 Install all the required packages from PyPI:
 
     pip install -r REQUIREMENTS
