@@ -9,7 +9,8 @@ through PyPI.
 
     sudo apt-get install libjpeg-dev
 
-Install all the required packages from PyPI:
+Install all the required packages from PyPI.  Run this from the root directory
+of the project:
 
     pip install -r REQUIREMENTS
 
