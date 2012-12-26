@@ -11,3 +11,4 @@ django-xmlrpc==0.1.4
 pyparsing==1.5.6
 pytz==2012h
 wsgiref==0.1.2
+zinnia-theme-html5==0.1

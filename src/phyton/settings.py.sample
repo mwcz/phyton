@@ -134,6 +134,7 @@ INSTALLED_APPS = (
     'django.contrib.comments',
     'tagging',
     'mptt',
+    'zinnia_html5',
     'zinnia',
 )
 
