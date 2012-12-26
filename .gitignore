@@ -1,2 +1,6 @@
 media/photos/*
+media/uploads/*
 src/initial_data.json
+src/phyton/settings.py
+*.pyc
+src/*.db
