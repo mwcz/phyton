@@ -1,7 +1,6 @@
 import os
 from django import forms
 from photos.models import Photo
-from photos.cs import palette
 from settings import IMAGE_SIZE_BOUNDS, MEDIA_ROOT
 from custom_widgets import *
 from PIL import Image

@@ -8,7 +8,6 @@ from django.db import models
 from django.forms import ModelForm
 from PIL import Image
 from settings import IMAGE_SIZE_BOUNDS, IMAGE_THUMBNAIL_SIZE_BOUNDS, MEDIA_ROOT
-from photos.cs import palette
 
 class Photo( models.Model ):
 
@@ -67,15 +66,18 @@ class Photo( models.Model ):
             # each color is in hex RRGGBB format.
         
             # get the image's palette
-            p = palette( img, 8 )
-            self.suggest0 = p[0]
-            self.suggest1 = p[1]
-            self.suggest2 = p[2]
-            self.suggest3 = p[3]
-            self.suggest4 = p[4]
-            self.suggest5 = p[5]
-            self.suggest6 = p[6]
-            self.suggest7 = p[7]
+
+            # NOTE: this used to be generated dynamically by scipy&numpy,
+            # but is currently being changed to use ColorPal (colorpal.org)
+            # instead.  so, for now it's gimped to suggest all blacks.
+            self.suggest0 = "000000"
+            self.suggest1 = "000000"
+            self.suggest2 = "000000"
+            self.suggest3 = "000000"
+            self.suggest4 = "000000"
+            self.suggest5 = "000000"
+            self.suggest6 = "000000"
+            self.suggest7 = "000000"
 
             img_hash = md5( img.tostring() ).hexdigest()
 
